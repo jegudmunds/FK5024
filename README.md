@@ -1,5 +1,5 @@
 # FK5024
-Lecture notes for FK5024 (bachelor level). 
+Astrophysics and cosmology lecture notes for FK5024 (bachelor level). 
 
 Course title: Particle and nuclear physics, astrophysics and cosmology
 
