@@ -1,0 +1,494 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatexmk
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{redefine-sections}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{bibspacing}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{bm}
+
+\makeatletter
+
+% Redefine maketitle
+%
+\def\maketitle{%
+\par\textbf{\@title}%
+\par{\@author}%
+\par}
+
+% Redefine \em and \emph
+%
+\DeclareRobustCommand{\em}{%
+  \@nomath\em \if b\expandafter\@car\f@series\@nil
+  \normalfont \else \bfseries \fi}
+
+\makeatother
+
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\lhead{\textsc{FK5024}}
+\rhead{\textsc{Lecture 11}}
+\pagestyle{fancy}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5em}
+\renewcommand{\familydefault}{\sfdefault}
+
+%  frequent science terms
+\newcommand{\lcdm}{$\mathrm{\Lambda CDM}$ }
+\newcommand{\lcdmn}{$\mathrm{\Lambda CDM}$}
+\newcommand{\etal}{et al.\@ }
+\newcommand{\etaln}{et al.\@}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+
+%% From Header.tex, see tmp/
+%% http://www.dfcd.net/articles/latex/latex.html
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\vv}[1]{\ensuremath{\vec{\mathbf{#1}}}} % for vectors2
+\newcommand{\vvv}[1]{\ensuremath{{\bm{#1}}}} % for vectors2
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}}
+\newcommand{\ellp}{\ell '}
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left\vert #1 \right\vert} % for absolute value
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}{d}
+\newcommand{\dder}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\ddder}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newcommand{\vhat}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for vectors
+\newcommand{\vvhat}[1]{\ensuremath{\bm{\hat{#1}}}} % for vectors
+
+\usepackage{xcolor}
+\definecolor{linkc}{RGB}{43,116,165}
+\definecolor{ocre}{RGB}{243,102,25} 
+\definecolor{mybrown}{RGB}{128,64,0}
+
+
+\definecolor{linkc}{RGB}{31,93,135}
+\newcommand{\linkc}[1]{\textcolor{linkc}{#1}}
+\newcommand{\linkcb}[1]{\textbf{\textcolor{linkc}{#1}}}
+
+
+\usepackage{tcolorbox}
+
+\mathchardef\mhyphen="2D
+
+\tcbuselibrary{theorems}
+\newtcolorbox{warning}{colback=mybrown!5!white,colframe=mybrown!45!white, title = Warning}
+
+\newtcolorbox{attention}{colback=mybrown!5!white,colframe=mybrown!45!white}
+
+\theoremstyle{plain}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{definitionT}{Note}%[section]
+\usepackage[framemethod=default]{mdframed}
+%\newmdenv[backgroundcolor=red]{tBox}
+%\newmdenv[leftmargin=1cm,linecolor=blue]{aBox}
+%\RequirePackage[framemethod=default]{mdframed}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+
+\newmdenv[skipabove=12pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=mybrown,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=25pt,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}    
+
+\newenvironment{note}{
+\begin{dBox}
+\begin{definitionT}}
+{\end{definitionT}
+\end{dBox}}   
+
+\begin{document}
+\fontsize{5mm}{6mm}\selectfont
+
+\thispagestyle{empty}
+\begin{center}
+\textsc{Lecture 11}\\[1.5ex]
+{\Huge FK5024: Particle and Nuclear Physics, Astrophysics and Cosmology\\}
+\vspace{3mm}
+{\large PART III: Astrophysics and Cosmology \\}
+%\vspace{3mm}
+Jon E. Gudmundsson\footnote{\href{http://jon.fysik.su.se}{\linkc{http://jon.fysik.su.se}}} \\
+%\vspace{-3mm}
+\linkc{jon@fysik.su.se}
+\end{center}
+
+The third part of this course is meant to provide a very brief introduction to basic astrophysics and cosmology. The coursebook for this part is Andrew R.\ Liddle's \textit{An Introduction to Cosmology} (3rd edition), although the first lecture also references material in Martin's \textit{Nuclear and particle physics} (2nd edition).\footnote{A 3rd edition of Martin's textbook exists, but we are basing our lectures on the 2nd edition. For those that only have access to 3rd edition, please reach out to me if you can't find the equivalent sections in your book.} The lecture notes will cover the topics that are most important for this course. These lecture notes are largely based on the notes passed on from Prof.\ Lars Bergström and Prof.\ Jan Conrad who taught this class in 2018. Also, a signification fraction of the below lecture notes represent abbreviated versions of the textbook discussion.
+
+\begin{attention}
+This lecture should to be complemented by M2.3, M8.1, M8.2, M9.1.4, L12
+%\begin{align}
+%E &= mc^2 & \text{Formula of the universe}
+%\end{align}
+%Insert text
+\end{attention}
+
+\section{Short (and simplified) introduction}
+The standard cosmological model assumes a Big Bang (some kind of beginning) and a mechanism that facilitates rapid expansion and cooling of space followed by basic element production (hydrogen and helium). Random over-densities in a primordial matter distribution cause gravitational in-fall and matter accumulation in certain locations of space that eventually leads to star formation. Some of these stars are short-lived (the massive ones) and eventually die in a supernova explosion. These explosions are responsible for expelling heavy nuclear elements that are a key ingredient for things like rocky planets and the evolution of evolve. %Most chemical elements that we observe today are generated in supernova explosions. 
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.7\textwidth]{img/chemical_distribution3.png}
+    \caption[Distribution of chemicals in the sun]{The abundance of elements in the sun plotted as a function of atomic number. Upper limits denoted with a 'V'. Figure taken from Observation and Analysis of Stellar Photospheres by David F. Gray \cite{Gray2005}.}
+\label{fig:chemica_dist}
+\end{center}
+\end{figure}
+
+\section{The stars and our sun}
+There are ways (absorption spectrometry) to measure the chemical composition of the sun. Figure \ref{fig:chemica_dist} shows one example of such a measurement. Things to note:
+\begin{itemize}
+\item Clearly hydrogen and helium make up most of the sun's mass
+\item Note the lack of lithium, beryllium, and boron
+\item The abundance of elements appears to follow an alternating pattern
+\item There is a gradual decline in abundances as we move to heavier elements
+\end{itemize}
+It is particularly important that we understand the origin this odd-even pattern (the Otto-Harkins rule). 
+
+\begin{note}
+At this point it might be useful to review the semi-empirical mass formula (SEMF). This material is covered in Lectures 6, 7, and 8.
+\end{note}
+
+%\begin{figure}[t]
+%\begin{center}
+%    \includegraphics*[angle=0,width=1.0\textwidth]{img/history_of_time.png}
+%    \caption[Qualitative history of time]{Qualitative history of time.}
+%\label{fig:history}
+%\end{center}
+%\end{figure}
+
+%It turns out that this is related to the physics governing 
+
+
+\section{Quick thermodynamics recap}
+A collection of point particles in thermal equilibrium at some temperature $T$ will have an average kinetic energy that is proportional to the temperature. The constant that relates the gas temperature to the kinetic energy is known as the Boltmann constant $k_\mrm{B} = 1.381 \times 10^{-23} \:\mrm{J/K} = 8.617 \times 10^{-5} \:\mrm{eV/K}$. The relation is:
+\begin{equation}
+\frac{3}{2} k_\mrm{B} T = \frac{1}{2} mv^{2}.
+\end{equation}
+Point particles can have velocity components along three independent (mutually orthogonal) directions; they have three degrees of freedom. The average energy per degree of freedom is $\frac{1}{2} k_\mrm{B}T$.
+
+\begin{note}
+For those that are interested, the derivation for a Maxwell-Boltzmann velocity distribution is incredibly clear and easy to follow. With the equations that govern likelihood of a certain velocity given a mass and a temperature, you can calculate the likelihood of a finding a particle above a certain velocity.
+\end{note}
+
+\section{The Coulomb barrier }
+The Coulomb barrier is the energy required to bring two nuclei close enough together to undergo a nuclear reaction (to fuse). Figure \ref{fig:binding_energy} shows the binding energy as a function of atomic mass number.
+\begin{align}
+V_C &= \frac{1}{4\pi\epsilon _0} \frac{Z Z^{\prime} e^{2}}{R+R^{\prime}} \nonumber \\[4pt]
+ &= \left( \frac{e^{2}}{4\pi\epsilon _0 \hbar c} \right) \frac{\hbar c ZZ^\prime}{1.2[A^{1/3} + (A^\prime)^{1/3}] \:\mrm{fm}} \nonumber \\[4pt]
+ &= 1.198 \frac{Z Z^\prime}{A^{1/3} + (A^\prime)^{1/3}} \:\mrm{MeV}
+\end{align} 
+We can for example assume that $A \approx A^\prime \approx 2Z \approx 2Z^\prime$ and get 
+\begin{equation}
+V_C \approx 0.15 A^{5/3} \:\mrm{MeV}.
+\end{equation}
+If we assume that $A \approx 8$ we get $V_C \approx 4.8 \:\mrm{MeV}$. This is the energy that has to be supplied, for example via kinetic energy, to overcome the Coulomb barrier. It turns out, however, that it is difficult to supply this amount of energy by simply colliding streams of nuclei together at high velocities. Instead, the trick is to provide the conditions for overcoming by this barrier via thermal energy; by heating a collection of nuclei. We can do a rough estimate by using standard thermodynamics relation 
+\begin{equation}
+E \simeq kT,
+\end{equation}
+where $k$ is the Boltzmann constant, given by $k_B = 8.6 \times 10^{-5} \: \mrm{eV K}^{-1}$. Unfortunately, for this to be realistic we would need to raise the temperature of our nuclear matter up to approximately $10^{11} \:\mrm{K}$. For comparison, the temperature at the core of the sun is thought to be about $2 \times 10^{6} \:\mrm{K}$. This is obviously not enough. 
+
+How is it then that we can have nuclear fusion inside stars? Part of the solution is the following: A thermalized soup of nuclei will have a (relatively) small number of nuclei that deviate significantly from the mean of the energy distribution. These energetic nuclei pairs will have enough energy to fuse and create a bound system.
+
+The other part of the solution is related to quantum tunneling (see extended discussion in M.7 and M8.2).
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.6\textwidth]{img/fig1.png}
+    \caption[Binding energy per nucleon]{Binding energy per nucleon as a function of mass number A for stable and long-lived nuclei. See Figure 2.2 in Martin's textbook.}
+\label{fig:binding_energy}
+\end{center}
+\end{figure}
+
+\section{Stellar fusion [M.\ 8.2.2]}
+The stars in the universe are powered by the fusion of hydrogen atoms to form helium along with heat as byproduct. In the case of our sun, the most significant process is known as the proton-proton cycle.
+\subsection{Proton-proton cycle}
+There are difference variations of this process, but the following is dominant. The process roughly goes as follows:
+ 
+The first step is the fusion of two hydrogen nuclei to produce deuterium via the weak interaction:
+\begin{equation}
+^{1} \mathrm{H} + {}^{1}\mathrm{H} \rightarrow \: ^{2}\mathrm{H}+e^{+}+\nu_{e}+0.42 \: \mathrm{MeV}
+\end{equation}
+Since this is a weak interaction it proceeds at a relatively slow rate.\footnote{This sets the scale for the long lifetime of the Sun.} The deuterium then combines with another hydrogen nucleus to produce $^{3}\mrm{He}$:
+\begin{equation}
+^{1} \mathrm{H} + {}^{2}\mathrm{H} \rightarrow \: ^{3}\mathrm{He}+\gamma + 5.49 \:\mathrm{MeV}.
+\end{equation}
+Finally, two deuterium nuclei combine to form hydrogen and leftover helium nuclei along with heat.
+\begin{equation}
+{}^{3}\mathrm{He} + {}^{3}\mathrm{He} \rightarrow {}^{4}\mathrm{He} + 2({}^{1}\mrm{H}) + 12.86 \:\mrm{MeV}.
+\end{equation}
+The amount of heat that is released through this process is large because the helium nucleus is very tightly bound (doubly magical). If we combine all of these processes together we are left with the following:
+\begin{equation}
+4({}^{1}\mathrm{H}) \rightarrow {}^{4}\mathrm{He} + 2e^{+}+ 2\nu_{e} + 2\gamma + 24.68 \:\mrm{MeV}.
+\end{equation}
+The positrons produced in this process are then annihilated in a collisions with electrons to release $2 \times 511 \:\mrm{keV}$. If we account for kinetic energy loss from neutrinos (about $0.26 \:\mrm{MeV}$ on average per neutrino),  the total energy released in the proton-proton cycle amounts to about  $26.72 \:\mrm{MeV}$. 
+
+It is important to note that the temperature in the sun's core, where this process is taking place, is $T_\mrm{Core} \approx 10^{7} \:\mrm{K}$. At these temperatures all material is fully ionized (plasma). 
+
+\subsection{CNO chain}
+The carbon, or the CNO chain is an important process in many stellar objects. It was once thought that the CNO chain was the primary source of energy, but it has been now shown that it corresponds to only about 3\% of the total energy output of the sun. For more massive stars, the CNO cycle is actually the primary source of energy.
+\begin{align}
+^{12} \mrm{C} + {}^{1}\mrm{H} & \rightarrow \: ^{13}\mrm{N}+\gamma+1.95 \: \mrm{MeV} \nonumber \\
+^{13} \mrm{N} & \rightarrow \: ^{13}\mrm{C} + e^{+} + \nu _e  + 1.20 \: \mrm{MeV}
+\end{align}
+\begin{equation}
+^{13} \mrm{C} + {}^{1}\mrm{H} \rightarrow \: ^{14}\mrm{N} + \gamma + 7.55 \: \mrm{MeV}
+\end{equation}
+\begin{align}
+^{14} \mrm{N} + {}^{1}\mrm{H} & \rightarrow \: ^{15}\mrm{O}+\gamma+7.34 \: \mrm{MeV} \nonumber \\
+^{15} \mrm{O} & \rightarrow \: ^{15}\mrm{N} + e^{+} + \nu _e  + 1.68 \: \mrm{MeV}
+\end{align}
+Finally, 
+\begin{equation}
+^{15} \mrm{N} + {}^{1}\mrm{H} \rightarrow \: ^{12}\mrm{C} + ^{4}\mrm{He} + 4.96 \: \mrm{MeV}
+\end{equation}
+The net result of this process is therefore
+\begin{equation}
+4({}^{1}\mathrm{H}) \rightarrow {}^{4}\mathrm{He} + 2e^{+}+ 2\nu_{e} + 3\gamma + 24.68 \:\mrm{MeV}.
+\end{equation}
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.9\textwidth]{img/fusion_reactions.png}
+    \caption[CNO Cycle]{Left: The proton-proton cycle. Right: The CNO cycle. Figures from Wikipedia.\footnotemark}
+\label{fig:cno}
+\end{center}
+\end{figure}
+
+\footnotetext{See \href{https://en.wikipedia.org/wiki/CNO\_cycle}{https://en.wikipedia.org/wiki/CNO\_cycle}}
+Question: What happens when the sun runs of out hydrogen? How does helium burn?
+
+\subsection{Age of the sun}
+Assuming that the sun luminosity is $L_\odot = 3.8 \times 10^{26} \:\mrm{W}$. We can estimate that 
+\begin{equation}
+\frac{dN_p}{dt} = L_\odot / 6.5 \:\mrm{MeV} \approx 3.6 \times 10^{38} \:\mrm{s}^{-1}
+\end{equation}
+The sun's mass is approximately $M _\odot = 1.99 \times 10^{30} \:\mrm{kg}$ and about 75\% of the sun's mass is in the form of hydrogen. This suggests that $N_\mrm{p} \approx 8.9 \times 10^{56}$. It should therefore take the sun about 
+\begin{equation}
+N_p / (dN_p / dt) \approx 2.4 \times 10^{18} \: \mrm{s} \approx 8 \times 10^{10} \:\mrm{years}
+\end{equation}
+to convert all of its hydrogen into helium. A more accurate estimate suggests that our sun should live for about 10 billion years ($10^{10}$).
+
+\section{Big bang nucleosynthesis}
+Big bang nucleosynthesis (BBN) is a concept that is commonly brought up in both astrophysical and cosmological context. It describes the physics of element production during the early stages in the history of our universe. For those who are interested, Steven Weinberg wrote a famous book called \textit{The First Three Minutes} \cite{Weinberg1993}.
+
+Chapter 12 in Liddle discusses light element production, in particular hydrogen and helium, during the first few minutes in the history of our big bang cosmological model. Some concepts to take away from this chapter include:
+\begin{itemize}
+\item BBN is responsible for the production of hydrogen, helium, deuterium, and even lithium; there is a primordial abundance that we can measure today
+\item Nucleosynthesis is happening at temperatures corresponding to $1 \:\mrm{MeV}$
+\item Nucleosynthesis happens during the first few minutes in the history of our universe
+\item At the end of this process, we are left with approximately 75\% hydrogen, and 25\% helium
+\item A tiny mass fraction in the form of deuterium, helium-3, and lithium (lithium-6 and lithium-7 are both stable)
+%\item Decoupling 
+\end{itemize}
+
+If we consider a time-period where the universe has cooled sufficiently rapidly so that protons and neutrons are non-relativistic, but before nuclei have formed. Assuming protons and neutrons are non-relativistic and in thermal equilibrium it is safe to assume that they follow the Maxwell-Boltzmann distribution. In that case, the number density is given by
+\begin{equation}
+N \propto m^{3/2} \exp \left( \frac{-mc^2}{k_\mrm{B} T} \right).
+\end{equation}
+The particles are in thermal equilibrium (at the same temperature) and we can therefore write
+\begin{equation}
+\frac{N_n}{N_p} = \left( \frac{m_n}{m_p} \right) ^{3//2} \exp \left[ -\frac{(m_n - m_p)c^2}{k_\mrm{B} T} \right].
+\end{equation}
+Since the mass of protons and neutrons are very similar we note that the number of neutrons and protons will be quite similar in the primordial plasma as long as $k_\mrm{B} T \gg (m_n - m_p)c^2$.
+
+Neutrons and protons are coupled through the following conversion process
+\begin{align}
+n + \nu _e &\longleftrightarrow  p + e^-, \\
+n + e^+ &\longleftrightarrow p + \bar{\nu}_e.
+\end{align}
+As long as these processes continue at a sufficient rate, the two particles remain in thermal equilibrium. We find that the reaction rate is high as long as $k_\mrm{B}T \simeq 0.8 \:\mrm{MeV}$ ($T\simeq10^{10}\:\mrm{K}$), but eventually this process dies down and the relative number density of hydrogen versus helium is
+\begin{equation}
+\frac{N_n}{N_p} \simeq \exp \left( - \frac{1.3 \:\mrm{MeV}}{0.8 \:\mrm{MeV}} \right) \simeq \frac{1}{5}. 
+\end{equation}
+
+\section{Supernovas, neutron stars, and neutrinos [M.\ 9.1.4]}
+\textit{This section is based on discussion found in Section 9.1.4 in Martin's textbook}
+
+White dwarfs and neutron stars represent two end-stages for massive stars. White dwarfs are held together by \textbf{electron degeneracy pressure} whereas neutron stars are supported by \textbf{neutron degeneracy pressure}. Neutron stars are the most dense known stellar objects, with the exception of black holes. Their formation is accompanied with a supernova explosion event which includes a process whereby electrons and protons are squashed together to form neutrons. The Pauli exclusion principle forces these neutrons to occupy different quantum states and therefore acts like a pressure term that resists further contraction.
+
+% This part taken from Ryden's astrophysics textbook
+It is interesting to look at the approximate equations governing the radius of white dwarfs. The Heisenberg uncertainty principle states that 
+\begin{equation}
+\Delta x \Delta p \geq \hbar.
+\end{equation}
+Under immense pressures, each electron is forced to stay within a volume $V \sim n_e^{-1}$. We can therefore assume that the location of each electron is known to within~$\Delta x \sim V^{1/3} \sim n_e^{-1/3}$. The uncertainty in the electron momentum is therefore 
+\begin{equation}
+\Delta p \sim \frac{\hbar}{\Delta x} \sim \hbar n_e^{1/3}.
+\end{equation}
+Assuming that the electrons are nonrelativistic, we can write 
+\begin{equation}
+\Delta v = \frac{\Delta p}{m_e} \sim \frac{\hbar n_e^{1/3}}{m_e}.
+\end{equation}
+Thanks to the Heisenberg uncertainty principle, the electrons in a tightly packed object are moving at speeds $v_e \propto n_e ^{1/3}$ and this relation is independent of temperature. We know from thermodynamics, that for a standard thermal picture, the electrons are moving at speeds
+\begin{equation}
+v_\mrm{th} \sim \left(\frac{kT}{m_e} \right)^{1/2},
+\end{equation}
+and similarly, the pressure from the thermal motion of these electrons is 
+\begin{equation}
+P_\mrm{th} = n_e k T \sim n_e m_e v^2_\mrm{th}.
+\end{equation}
+By analogy, the "Heisenberg speeds" contribute a degeneracy pressure 
+\begin{equation}
+P_\mrm{degen} \sim n_e m_e (\Delta v)^2 \sim n_e m_e \left( \frac{\hbar n_e^{1/3}}{m_e} \right)^2 \sim \hbar^2 \frac{n_e ^{5/3}}{m_e}
+\end{equation}
+For any object in hydrostatic equilibrium, the pressure at the center is 
+\begin{equation}
+P_c \sim \frac{GM^2}{R^4}.
+\label{eq:heq}
+\end{equation}
+Assuming this pressure is provided by electron degeneracy pressure, we find that 
+\begin{equation}
+P_c \sim \hbar^2 \frac{n_e ^{5/3}}{m_e} \sim \hbar^2 \frac{\rho ^{5/3}}{m_p^{5/3} m_e}  \sim \frac{\hbar^2}{m_p^{5/3} m_e} \frac{M^{5/3}}{R^5}
+\end{equation}
+Combining this last result with Eqation \ref{eq:heq} we find that 
+\begin{equation}
+G \frac{M^2}{R^4} \sim \frac{\hbar^2}{m_p^{5/3} m_e} \frac{M^{5/3}}{R^5}
+\end{equation}
+which gives
+\begin{equation}
+R \sim \frac{\hbar ^2}{G m_e m_p^2} \left( \frac{M}{m_p} \right)^{-1/3}.
+\end{equation}
+Somewhat surprisingly, the size of a white dwarf goes down as you increase its mass. Obviously, the above derivation made many simplifying assumptions, but the rough result is still valid. The more accurate derivation was Chandrasekhar and others. Stars at the end of their life whose mass exceeds the Chandrasekhar limit evolve to become neutron stars.
+%\begin{note}
+%This estimate
+%\end{note}
+
+Roughly, the order of events goes as follows:
+\begin{enumerate}
+\item Stars with mass greater than about 11 solar masses ($M_\odot$) can evolve through all stages of fusion ending in a core of iron surrounded by shells of lighter elements
+\item Thermonuclear fusion of iron is not possible and therefore the core will contract under gravity
+\item Initially this process is resisted by electron degeneracy pressure, but if the mass of the core exceeds $M = 1.4 \: M_\odot$ (the Chandrasekhar limit) the electrons are unable to support the core and a collapse within an explosion becomes inevitable
+\item We subsequently have photodisintegration of iron and other nuclei followed photodisintegration of helium into protons and neutrons
+\end{enumerate}
+
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.95\textwidth]{img/origin_of_elements.png}
+    \caption[The origin of elements]{A table of elements with color coding corresponding to the mechanism responsible for the element abundance. Figure created by Jennifer Johnson (from A Chemical History of the Universe). Note that this figure is effectively being updated constantly as new data are gathered.}
+\label{fig:fig1}
+\end{center}
+\end{figure}
+
+
+The photodisintegration of iron can be described by,
+\begin{equation}
+\gamma + {}^{56}\mrm{Fe} \rightarrow 13({}^4\mrm{He}) + 4n,
+\end{equation}
+which causes further heating of the core. This drives a second process 
+\begin{equation}
+\gamma + {}^4 \mrm{He} \rightarrow 2p + 2n.
+\end{equation}
+As this process continues, eventually the electrons have enough energy to faciliate a weak interaction whereby electrons and protons combine to form neutrons
+\begin{equation}
+e^{-} + p \rightarrow n + \nu _e.
+\end{equation} 
+The gravitational collapse stops abruptly when the neutron degeneracy pressure counters the gravitational pressure. This generates a core-collapse shock wave that expels matter, radiation, and neutrinos. It turns out, that the majority (99\%) of energy radiated away from a core-collapse supernova is in the form of neutrinos. When all of this is done, most of the mass of the star is in the form of neutrons.
+
+Some neutron star properties include:
+\vspace{-7mm}
+\begin{itemize}
+\item Mass:  $M \approx 1.2 \mhyphen 2.2 \: M_\odot$
+\item Radius: $R = 8 \mhyphen 13$~km
+\item Density: $\rho \approx 10^{14}$ g/cm$^{3}$
+\end{itemize}
+
+\begin{note}
+A lot is still unknown about the physics that are in play during the formation of a neutron stars. 
+\end{note}
+
+\section{Kamiokande, Amanda, and IceCube}
+Famously, the Kamiokande and IMB experiments measured a stream of neutrinos in their water Cherenkov detectors in 1987.\footnote{These neutrinos are thought to have come from SN1987A} This signal was then used to constrain the mass of the neutrinos (see discussion in Liddle 9.1.4). The 2002 Nobel prize in physics was in part awarded for the work leading to the detection of cosmic neutrinos.
+
+We estimate roughly 2-3 supernova events per century in our galaxy. We expect that such a supernova event will register in experiments like Super-Kamiokande (see Figure \ref{fig:skamiokande}). Within seconds of this happening, the collaboration hopes to be able to send alarms to other astrophysical observatories. The data from modern-day observations of a nearby supernova would likely revolutionize our understanding of various phenomena. The 2015 Nobel prize in physics was awarded in recognition of Super-Kamiokande measurements of neutrino oscillations. 
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.7\textwidth]{img/superkami.jpg}
+    \caption[Super Kamiokande experiment]{Super-Kamiokande experiment is an underground detector filled with ultra-pure water (50,000 tons) that is surrounded by photomultiplier tubes. The detector is placed $1 \:\mrm{km}$ underground to shield from unwanted radiation signal.}
+\label{fig:skamiokande}
+\end{center}
+\end{figure}
+
+The IceCube Neutrino Observatory is a large scientific experiment placed at the South Pole. It uses thousands of photomultiplier tubes mounted on vertical strings that penetrate km-deep boreholes in the Antarctica ice sheet. The idea is that high-energy neutrinos will occasionally interact with water molecules in the ice creating a stream of charged particles that emit Cherenkov radiation. The predecessor to the IceCube experiment was the Amanda experiment.
+
+\begin{note}
+The IceCube experiment has significant contributions from Stockholm University. If you are interested in the science that they do, you should reach out to people like Chad Finley and Klas Hultqvist.\footnote{See \href{https://www.su.se/profiles/klas-1.186617}{\linkc{https://www.su.se/profiles/klas-1.186617}} and \href{https://www.su.se/profiles/cfinl-1.187008}{\linkc{https://www.su.se/profiles/cfinl-1.187008}}}
+\end{note}
+
+
+\section{List of important concepts [non-exhaustive]}
+Here are some important concepts and questions to take away from the material covered in this lecture (and in the corresponding chapters in the textbooks):
+\vspace{-7mm}
+\begin{itemize}
+\item What elements are thought to be generated during big bang nucleosynthesis?
+\item What is the half-life time of a neutron in isolation? What is the half-life time of a proton?
+\item The Chandrasekhar limit is the maximum mass of a stable white dwarf. Best estimates put that value at about $1.4 M_\odot$.
+\item The Pauli exclusion principle states that fermions have to occupy distinct quantum states within quantum mechanical system. 
+\end{itemize}
+
+\begingroup
+%\bibliographystyle{unsrt85}
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{unsrtnat}
+%\bibliographystyle{science}
+%\setlength{\bibitemsep}{-5pt}
+\linespread{0.5}\selectfont
+\bibliography{lecture11}
+
+%{\bibliography{snsb2019}}
+\endgroup
+
+
+\end{document}
