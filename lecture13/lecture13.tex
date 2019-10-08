@@ -1,0 +1,651 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatexmk
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{redefine-sections}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{bibspacing}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{empheq}
+
+\newcommand{\boxedeq}[2]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align}\label{#1}#2\end{empheq}}
+\newcommand{\coloredeq}[2]{\begin{empheq}[box=\colorbox{lightgreen}]{align}\label{#1}#2\end{empheq}}
+
+\makeatletter
+
+% Redefine maketitle
+%
+\def\maketitle{%
+\par\textbf{\@title}%
+\par{\@author}%
+\par}
+
+% Redefine \em and \emph
+%
+\DeclareRobustCommand{\em}{%
+  \@nomath\em \if b\expandafter\@car\f@series\@nil
+  \normalfont \else \bfseries \fi}
+
+\makeatother
+
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\lhead{\textsc{FK5024}}
+\rhead{\textsc{Lecture 13}}
+\pagestyle{fancy}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5em}
+\renewcommand{\familydefault}{\sfdefault}
+
+%  frequent science terms
+\newcommand{\lcdm}{$\mathrm{\Lambda CDM}$ }
+\newcommand{\lcdmn}{$\mathrm{\Lambda CDM}$}
+\newcommand{\etal}{et al.\@ }
+\newcommand{\etaln}{et al.\@}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+
+%% From Header.tex, see tmp/
+%% http://www.dfcd.net/articles/latex/latex.html
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\vv}[1]{\ensuremath{\vec{\mathbf{#1}}}} % for vectors2
+\newcommand{\vvv}[1]{\ensuremath{{\bm{#1}}}} % for vectors2
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}}
+\newcommand{\ellp}{\ell '}
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left\vert #1 \right\vert} % for absolute value
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}{d}
+\newcommand{\dder}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\ddder}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newcommand{\vhat}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for vectors
+\newcommand{\vvhat}[1]{\ensuremath{\bm{\hat{#1}}}} % for vectors
+
+\usepackage{xcolor}
+\definecolor{linkc}{RGB}{43,116,165}
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mybrown}{RGB}{128,64,0}
+
+
+\definecolor{linkc}{RGB}{31,93,135}
+\newcommand{\linkc}[1]{\textcolor{linkc}{#1}}
+\newcommand{\linkcb}[1]{\textbf{\textcolor{linkc}{#1}}}
+
+
+\usepackage{tcolorbox}
+
+\mathchardef\mhyphen="2D
+
+\tcbuselibrary{theorems}
+\newtcolorbox{warning}{colback=mybrown!5!white,colframe=mybrown!45!white, title = Warning}
+
+\newtcolorbox{attention}{colback=mybrown!5!white,colframe=mybrown!45!white}
+
+\theoremstyle{plain}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{definitionT}{Note}%[section]
+\usepackage[framemethod=default]{mdframed}
+%\newmdenv[backgroundcolor=red]{tBox}
+%\newmdenv[leftmargin=1cm,linecolor=blue]{aBox}
+%\RequirePackage[framemethod=default]{mdframed}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+
+\newmdenv[skipabove=12pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=mybrown,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=25pt,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}
+
+\newenvironment{note}{
+\begin{dBox}
+\begin{definitionT}}
+{\end{definitionT}
+\end{dBox}}
+
+\begin{document}
+\fontsize{5mm}{6mm}\selectfont\thispagestyle{empty}
+
+\thispagestyle{empty}
+\begin{center}
+\textsc{Lecture 13}\\[1.5ex]
+{\Huge FK5024: Particle and Nuclear Physics, Astrophysics and Cosmology\\}
+\vspace{3mm}
+{\large PART III: Astrophysics and Cosmology \\}
+%\vspace{3mm}
+Jon E. Gudmundsson\footnote{\href{http://jon.fysik.su.se}{\linkc{http://jon.fysik.su.se}}} \\
+%\vspace{-3mm}
+\linkc{jon@fysik.su.se}
+\end{center}
+
+Lecture 12 introduced some fundamental concepts in cosmology. In this lecture we will expand a bit on some of those concepts. In particular, we will focus on Hubble expansion and role of the Friedmann in describing the time-evolution of the Universe.
+\begin{attention}
+To be supplemented by Liddle: 3.4-3.5, 4 (skip 4.4-4.5), 5.3-5.5
+\end{attention}
+
+\section{Hubble expansion}
+The Universe is expanding. Galaxies tend to move away from us. Remembering the notation from Lecture 12, we write:
+\begin{equation}
+r = a \chi,
+\end{equation}
+where $r$ is the physical distance, $a$ is the scale factor, and $\chi$ is the comoving distance. We can then write:
+\begin{equation}
+v(t) = \frac{dr(t)}{dt} = \frac{d}{dt} \left[ a(t) \chi \right] = \dot{a} \chi  = \frac{\dot{a}}{a} r.
+\end{equation}
+In this expression $H(t) = \dot{a}/a$ is the Hubble parameter. Evaluated at the current epoch, we write $t=t_0 \Rightarrow H(t_0) \equiv H_0 = \dot{a}(t_0) / a(t_0)$. The Hubble constant $H_0$ is the Hubble parameter, $H(t)$, evaluated at the current epoch $t = t_0$. 
+
+Observations suggest that
+\begin{equation}
+H_0 \approx (70 \pm 3) \:\mrm{km/s/Mpc}.
+\end{equation}
+Other conventions include writing $H_0 \equiv h \cdot 100 \:\mrm{km/s/Mpc}$, with $h=0.70\pm0.03$ (see formula sheet).
+
+The low-velocity limit of the relativistic Doppler equation gives 
+\begin{equation}
+\frac{\lambda_0}{\lambda_e} = 1+\frac{v}{c} = \frac{a(t_0)}{a(t_e)} = 1+z
+\end{equation}
+where $\lambda _e$ and $\lambda _0$ are the wavelength of the radiation when it was emitted and when it was observed, respectively. For objects that are relatively close to us, the scale factor at the time of emission will be similar to $a(t_0)$. In that case, peculiar motion of the emitting object relative to us becomes important. For very large cosmological distances, $z > 1$, the approximations needed for the above expression start to break down. 
+
+At this point, it might be helpful to review distance scales
+\vspace{-5mm}
+\begin{itemize}
+\itemsep-0.2em
+\item Distance to sun: $4.84 \times 10^{-12}$ Mpc
+\item Distance to Alpha Centauri: $1.33 \times 10^{-6}$ Mpc
+\item Distance to center of Milky Way: $0.008$ Mpc
+\item Distance to Andromeda (M31): $0.778$ Mpc
+\item Distance to the Virgo galaxy cluster: $17$ Mpc
+\item Distance to the surface of last scattering (CMB): $13,700$ Mpc
+\end{itemize}
+\vspace{-5mm}
+Note that the Virgo Cluster is a cluster of about 1000-2000 galaxies. The cluster appears to be at the centre of a larger supercluster, of which the Local Group (a group of galaxies that includes the Milky Way) is a member.
+
+\vspace{-10mm}
+\begin{wrapfigure}{l}[1.2cm]{0.33\textwidth}
+\begin{center}
+    \vspace{-10mm}
+    \includegraphics*[angle=0,width=0.33\textwidth]{img/gauss_law.png}
+    \caption[Insert text]{Homogenous sphere.}% of density $\rho(t)$.}
+\label{fig:sphere}
+\end{center}
+\end{wrapfigure}
+
+\section{Friedmann Equations from Newtonian Mechanics}
+The Friedmann equations describe the time-evolution of an isotropic and homogenous universe that conforms to Einstein's theory of general relativity.
+
+It turns out that Newtonian physics can be used to derive the Friedmann equations.\footnote{This section is based on discussion in Liddle 3.1.} Assuming a homogenous sphere of density $\rho(t)$ and radius $r(t)$, how will the velocity of a test mass particle with mass $m$, evolve with time (see Figure \ref{fig:sphere})?
+
+We can first note that the mass within a radius $r$ is 
+\begin{equation}
+M(t)  = \frac{4\pi}{3} r^{3}(t) \rho(t).
+\end{equation}
+\hspace{-4.7cm}The potential energy of a test particle moving in this matter distribution is
+\begin{equation}
+V(T) = - \frac{GM(t)m}{r(t)} + \mrm{const} = - \frac{4\pi G}{3} r^{2}(t) \rho(t) m.
+\end{equation}
+The kinetic energy of our test particle is
+\begin{equation}
+T(t) = \frac{1}{2} mv^{2} (t) = \frac{1}{2} m \dot{r}^{2}.
+\end{equation}
+Combining the above with $r(t) = a(t) \chi$ and $\dot{r} = \dot{a} \chi$ we find: 
+\begin{align}
+U &= T + V = \frac{1}{2} m\dot{a}^{2} \chi^{2} - \frac{4\pi G}{3} a^{2} \chi ^{2} \rho (t) m, \\
+ &= m(a \chi)^{2} \left[ \frac{1}{2} \left( \frac{\dot{a}}{a} \right)^{2} - \frac{4\pi G}{3} \rho \right].
+\end{align}
+Rearranging the above we get:
+\begin{align}
+\left( \frac{\dot{a}}{a} \right)^{2} &= \frac{8\pi G}{3} \rho(t) + \frac{2U}{m(a \chi)^{2}}, \nonumber \\
+&= \frac{8\pi G}{3} \rho(t) - \frac{kc^{2}}{a^{2}}.
+\label{eq:friedmann1}
+\end{align}
+We define $k \equiv -2U/(mc^{2}\chi^{2})$, which is a constant because energy is conserved and the comoving distance is fixed. This is the so-called 1st Friedmann equation.
+
+Note that $k$ is constant with time. The Universe has a unique value for $k$ which is unchanged with time. Also note that a positive $k$ implies a negative $U$. This implies that the expansion of the Universe will sometime come to a halt and reverse itself. Conversely, a negative value for $k$ implies a positive value for $U$. In this case the Universe will expand forever.
+
+\begin{note}
+The above derivation relies on the Shell theorem (which is related to Birkhoff's theorem) from classical mechanics, which states that a spherically symmetric body affects external objects gravitationally as if all of the mass were concentrated at a point at its centre. This is also strongly related to Gauss's law for gravity which has a direct analogy to Gauss's law in electromagnetism.%\footnote{The divergence theorem can be used to relate surface integrals }
+\end{note}
+
+%\section{Friedmann Equations}
+%In a universe whose energy density has contributions from matter, radiation, and a mysterious dark energy component, the 1st Friedmann equation can be written as
+%\begin{equation}
+%\left( \frac{\dot{a}}{a} \right)^{2} = \frac{8\pi G}{3} (\rho _m + \rho _r)  - \frac{kc^{2}}{a^{2}} + \frac{\Lambda}{3}
+%\label{eq:friedmann1}
+%\end{equation}
+%where 
+%\begin{equation}
+%k = \frac{-2U}{m^{2}c^{2}\chi^{2}}
+%\end{equation}
+%determines the geometry of the universe. The last term in Equation \ref{eq:friedmann1} corresponds to a dark energy component (vacuum energy) which we will discuss this in an upcoming lecture. %Figure \ref{fig:curvature} shows the 2-dimensional analog of the universe curvature.
+
+\section{Fluid equation}
+The 1st Friedmann equation in isolation lacks a bit of punch. We want to better understand how the properties of different energy components (and their density, $\rho(t)$) influence their time evolution. This behaviour is encapsulated in the so-called fluid equation. We can derive this equation from the 1st law of thermodynamics
+\begin{equation}
+dE + pdV = TdS,
+\end{equation}
+where $V$ now corresponds to an expanding volume of comoving radius. The above equation is simply a statement of local energy conservation. Imagine that we are observing gas confined to a sphere of unit comoving radius. The physical radius at any time can be found from $a$ and we can use $E = mc^{2}$ to write
+\begin{equation}
+E = \frac{4\pi}{3} a^{3} \rho c^{2}.
+\end{equation}
+Taking the total time derivative, we find that
+\begin{equation}
+\frac{dE}{dt} = 4\pi a^{2} \rho c^{2} \frac{da}{dt} + \frac{4\pi}{3} a^{3} \frac{d\rho}{dt} c^{2},
+\end{equation}
+and the volume rate of change is
+\begin{equation}
+\frac{dV}{dt} = 4\pi a^{2}\frac{da}{dt}.
+\end{equation}
+Assuming an adiabatic expansion (isolated and reversible process) $dS=0$, we are left with $dE = - pdV$ and
+\begin{equation}
+\dot{\rho} + 3\frac{\dot{a}}{a} \left(\rho + \frac{p}{c^{2}} \right) = 0.
+\label{eq:fluid}
+\end{equation}
+This is the fluid equation that we will use to describe the time evolution of different energy components in the Universe. 
+
+\section{Acceleration equation}
+The 2nd Friedmann equation, also known as the acceleration equation, can be derived from the 1st Friedmann equation and the fluid equation. We start by differentiating the 1st Friedmann equation (Equation \ref{eq:friedmann1}) w.r.t.\ to time. 
+\begin{equation}
+2\frac{\dot{a}}{a} \frac{a\ddot{a}-\dot{a}^{2}}{a^{2}} = \frac{8\pi G}{3}\dot{\rho} + 2\frac{kc^{2}\dot{a}}{a^{3}}.
+\end{equation}
+Inserting Equation \ref{eq:fluid} into the above we find
+\begin{equation}
+\frac{\ddot{a}}{a} - \left( \frac{\dot{a}}{a} \right)^{2} = -4\pi G \left( \rho + \frac{p}{c^{2}} \right) + \frac{kc^{2}}{a^{2}}.
+\end{equation}
+Then, plugging in Equation \ref{eq:friedmann1} a second time, we find:
+\begin{equation}
+\frac{\ddot{a}}{a} = -\frac{4\pi G}{3} \left( \rho + \frac{3p}{c^{2}} \right).
+\end{equation}
+This equation shows that any energy component with a pressure term tends to slow down the expansion; the second time derivative of the scale factor will be negative.
+
+\section{Units}
+Up to this point we have been careful about including the speed of light, $c$, explicitly in our derivations. However, it is common to set $c=1$. The physics are not changed by this fact and the equations are simplified. However, this can also lead to issues when trying to quote physically meaningful quantities.
+
+Using units where we set $c = 1$, the 1st and 2nd Friedmann equations become:
+%\begin{equation}
+%
+%\end{equation}
+\boxedeq{eq:friedmann1b}{\left( \frac{\dot{a}}{a} \right)^{2} = \frac{8\pi G}{3} \rho - \frac{k}{a^{2}}}
+and
+\boxedeq{eq:friedmann2b}{\frac{\ddot{a}}{a} = -\frac{4\pi G}{3} \left( \rho + 3p \right).}
+
+\section{The equation of state}
+A famous equation of state is the gas equation
+\begin{equation}
+pV = nRT.
+\end{equation}
+The gas equation allows us to relate gas pressure to other state variables such as number density, $n$, and temperature, $T$. In cosmology, it is common to express matter/energy equations of state as simply
+\begin{equation}
+p = w\rho,
+\end{equation}
+where $p$ is pressure, $\rho$ is energy density, and $w$ is some scalar that relates the two.
+
+For ideal gas the gas equation tells us that 
+\begin{equation}
+pV = \frac{1}{3}N m v^{2}_\mrm{rms}.
+\end{equation}
+Observations show that the average peculiar velocity of galaxies are well within relativistic limits ($v/c << 1$) and we do in fact assume that all matter is non-relativistic.\footnote{For example, the velocity of our galaxy relative to the fixed reference frame defined by the CMB photons (which we will cover in a future lecture) is about $\mathcal{O}(100) \:\mrm{km/s}$.} This implies that the pressure term in the acceleration equation can be ignored, that is $p/c^{2} \simeq 0$. In this case, the fluid equation says that
+\begin{align}
+&\dot{\rho} + 3 \frac{\dot{a}}{a}\rho = 0 \quad (p = 0), \nonumber \\
+ &\Rightarrow \quad \frac{\dot{\rho}}{\rho} = -3 \frac{\dot{a}}{a}, \nonumber \\
+ &\Rightarrow \quad \ln (\rho) = -3 \ln (a) + \:\mrm{const}
+\end{align}
+From this we can write
+\begin{equation}
+\rho = \rho _0 a^{-3}.
+\label{eq:matter_rho_evolution}
+\end{equation}
+In other words
+\boxedeq{eq:rhom}{\rho _\mrm{m} \propto \frac{1}{a^{3}}}
+%\begin{equation}
+%
+%\label{eq:rhom}
+%\end{equation}
+
+What happens if $p \neq 0$? If we assume that one can write $p = w\rho$, we will get
+\begin{align}
+&\frac{\dot{\rho}}{\rho} = -3(1+w) \left( \frac{\dot{a}}{a} \right) \nonumber \\
+&\Rightarrow \rho \propto \frac{1}{a^{3(1+w)}}
+\end{align}
+Photons have a pressure term that is equal to 1/3 the energy density (see statistical mechanics course). In that case, we arrive at 
+%\begin{equation}
+\boxedeq{eq:rhor}{\rho _\mrm{r} \propto \frac{1}{a^{3(1+\frac{1}{3})}} = \frac{1}{a^{4}}}
+%\label{eq:rhor}
+%\end{equation}
+This suggests that the energy density of radiation and matter evolve differently with change in the scale factor. In the case of photons, a more rapid decline in the energy density with an expanding universe can be understood in terms of a wavelength increase. 
+
+\begin{note}
+Pressure is typically quoted in units of N/m$^{2}$ (Newton per meter squared). However, multiply both sides of the division symbol and you will find that pressure can be expressed as Nm/m$^{3}$ which has the same units as energy density since J = Nm.
+\end{note}
+
+Remember that $E = hf = hc/\lambda$, a change in the wavelength because of the expansion of space therefore reduces the energy of photons; the photons are redshifted.  
+
+%\textbf{Recap:} For non-relativistic matter such as galaxies we have $w=0$, but $w=1/3$ for photons. Interestingly, it turns out that dark energy can be described with $w=-1$. This corresponds to a scenario where empty space has an effective energy which tends to drive expansion of space. 
+
+\section{Curvature}
+Up to this point, we have treated the parameter $k$ as a simple constant. It turns out, however, that $k$ has physical relevance. In short, general relativity permits three types of solutions to the equations describing the time evolution of our Universe when assuming homogenity and isotropy. These are attributed to three types of values of the constant $k$, $k < 0$, $k=0$, and $k>0$. %In this case, the angles of a triangle will add up to $180 \:\mrm{deg}$.
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.9\textwidth]{img/curvature.png}
+    \caption[Insert text]{Two-dimensional analog of universe curvature.}
+\label{fig:curvature}
+\end{center}
+\end{figure}
+
+
+\textbf{$\bm{k}$ = 0} This is the most intuitive case. A value of $k=0$ corresponds to a flat universe that obeys Euclidian geometry. Two parallel lines will remain parallel indefinitely. This universe is infinite in extent, since some type of an edge would break our requirement of homogeneity and isotropy. Figure \ref{fig:curvature} gives a visual representation of a flat universe in two dimensions. The sum of angles in a triangle is 180 degrees.
+
+\textbf{$\bm{k} >$ 0}
+This is a closed universe with parallel lines eventually crossing each other (positive curvature); this universe is finite in extent. The two-dimensional analogy is simply the surface of a sphere. Note that the 2-dimensional analogy is still perfectly consistent with the concept of isotropy and homogeneity. Triangles drawn in this geometry will have sum of angles that are larger than 180 degrees.
+
+\textbf{$\bm{k} <$  0}
+This is an open universe (negative curvature). Lines that are parallel at some point will diverge and never cross. This universe is infinite in extent. Triangles drawn in this geometry will have sum of angles that are less than 180 degrees.
+
+Why do we care about curvature? Although it is conceptually easy to think of a flat universe, the theory of general relativity allows for three types of solutions and we have no reason to assume one over the other.
+
+\section{The case of a flat universe}
+In a flat ($k=0$) and matter dominated universe we can write
+\begin{equation}
+H^2 = \left( \frac{\dot{a}}{a} \right)^2 = \frac{8\pi G}{3} \rho(t).
+\label{eq:fr1_flat}
+\end{equation}
+From equation \ref{eq:matter_rho_evolution} we saw that one can write
+\begin{equation}
+\rho _\mrm{m}(t) = \frac{\rho _\mrm{m} (t_0)}{a^3(t)}
+\end{equation}
+where we have chosen $a(t_0) = 1$. Multiplying through Equation \ref{eq:fr1_flat} with $a(t)^3$ we get
+\begin{equation}
+\dot{a}^2 a = \frac{8 \pi G}{3} \rho _0 = \mrm{constant}
+\end{equation}
+Assuming one can write $a(t) = t^q$ we have 
+\begin{equation}
+\dot{a} = \frac{1}{q}t^{q-1},
+\end{equation}
+and therefore 
+\begin{align}
+\dot{a}^2 a &= t^{2(q-1)} t^q = t_0 = \mrm{constant} \nonumber \\
+&\Rightarrow 2(q-1) + q = 0 \nonumber \\
+&\Rightarrow q = \frac{2}{3}.
+\end{align}
+This tells us that in a flat and matter dominated universe the scale factor, $a(t)$, evolves like
+\begin{equation}
+a(t) \propto t^{2/3} \quad \mrm{(matter\: dominated)}.
+\end{equation}
+A similar exercise for a flat, but radiation dominated universe gives
+\begin{equation}
+a(t) \propto t^{1/2} \quad \mrm{(radiation\: dominated)}.
+\end{equation}
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/time_evolution.png}
+    \caption[Insert text]{Time evolution of different energy components.}
+\label{fig:time_evolution}
+\end{center}
+\end{figure}
+
+\section{Age of the universe}
+What is the age of a matter dominated universe? Assuming a matter dominated universe at all times ($\rho _m \gg \rho _r$), we have
+\begin{equation}
+a \propto t^{2/3}.
+\end{equation}
+From this, we find that
+\begin{equation}
+H(t) = \frac{\dot{a}}{a} = \frac{2}{3}\frac{t^{-1/3}}{t^{2/3}} = \frac{2}{3t}.
+\end{equation}
+Which allows us to write
+\begin{equation}
+t_0 = \frac{2}{3H_0} = \frac{2}{3 \cdot 2.3 \times 10^{-18} \:\mrm{s}} = 3\cdot10^{17} \:\mrm{s} \approx 10^{10} \:\mrm{years},
+\end{equation}
+noting that $H_0 = 70 \:\mrm{km/s/Mpc} \approx 2.3 \times 10^{-18} \:\mrm{s}^{-1}$.
+
+Our current best estimates of the age of the universe (see future lecture) puts it at 
+\begin{equation}
+T _\mrm{age} = 13.7 \times 10^{9} \:\mrm{years}.
+\end{equation}
+
+\section{Time evolution of the universe}
+At the present epoch, radiation appears to provide a relatively small fraction of the total energy density of the universe. In fact, $\rho _\mrm{rad} /\rho _\mrm{matter} \sim 10 ^{-5}$. However, the Friedmann equations (and Equations \ref{eq:rhom} and \ref{eq:rhor}) show the relative energy contribution of radiation and matter is not fixed with time. At earlier times
+\begin{equation}
+\frac{\rho _r}{\rho _m} \sim \frac{1/a^{4}}{1/a^{3}} \sim \frac{1}{a}.
+\end{equation}
+At earlier times, $a \rightarrow 0$, the universe was radiation-dominated. Figure \ref{fig:time_evolution} shows the time-development of energy density from matter and radiation. At some point in the history of the universe, there was a transition where matter energy density overtook the photon energy density in driving the expansion of space. It turns out that this happened approximately 5000 years after the Big Bang. 
+
+%\begin{equation}
+%
+%\end{equation}
+
+
+%\section{Importance of radiation}
+%What role does radiation play at our current epoch? Currently, relative mass contribution from the CMB photons is $\rho _r / \rho _m \sim 10^{-5}$. However, at earlier times
+%\begin{equation}
+%\frac{\rho _r}{\rho _m} \sim \frac{1/a^{4}}{1/a^{3}} \sim \frac{1}{a}.
+%\end{equation}
+%At earlier times, $a \rightarrow 0$, the universe was radiation-dominated.
+
+%It is fair to assume that a lot of people have looked up at the night sky and wondered about the stars. How far away are they? One way to estimate the distance to the stars is to make use of parallax angles. This approach relies on a basic observation about the sun-earth relationship: we are revolving around the sun in a roughly circular orbit. The distance to the sun has been known for quite some time. We can state that $r = 1.496 \times 10^{11}\:\mrm{m}$ (approximately 8 light minutes).
+%
+%Figure \ref{fig:parallax} shows setup for distance measurement via parallax angle. The distance to a nearby star is $D$, the parallax angle is $p$, and the sun-earth distance is $r$. For small angles we can write
+%\begin{equation}
+%\sin (p) \approx p = \frac{r}{D} \: \Rightarrow \: D = \frac{r}{p}.
+%\end{equation}
+%
+%%We can use this measurement to estimate the distance other nearby objects through a technique known as parallax measurement. Assuming we are on a circular orbit around the sun, we can use simple trigonometry to estimate the distance to far-away objects by measuring the change in their apparent angle over a 6-month period.
+%
+%\begin{figure}[t]
+%\begin{center}
+%    \includegraphics*[angle=0,width=0.5\textwidth]{img/parallax.png}
+%    \caption[Insert text]{Parallax}
+%\label{fig:parallax}
+%\end{center}
+%\end{figure}
+%
+%We find that some stars on the night-sky appear to move significantly over half a year, while other remain fixed. The stars that seem to move with respect to the fixed background are therefore closer to us than the rest.
+%
+%Recently, the European Space Agency launched a satellite mission that mapped stars in our Galaxy using exactly this approach. The satellite mission, Gaia, has an angular resolution of approximately $25 \times 10^{-6}$ arcsec which effectively means that the experiment can measure distance to 20 million star with roughly 1\% accuracy.
+%
+%For larger distances, the parallax angle becomes too small and we have to resort to different methods. One of this relies on so-called standard candles (see e.g.\ discussion about supernovas in future lectures).
+%
+%\textbf{Definition:} \\
+%1 pc (parsec) is the distance which gives $p = 1 \ \mrm{arcsec}$ \\
+%$1 \ \mrm{deg} = \pi / 180 \ \mrm{rad}, 1 \ \mrm{arcmin} = 1/60 \ \mrm{deg}, 1 \ \mrm{arcsec} = 1/60 \ \mrm{arcmin}$,  \\
+%$\Rightarrow 1 \ \mrm{arcsec} = \pi / 180 / 3600 \ \mrm{rad} \approx 4.85 \times 10^{-6} \ \mrm{rad}$ \\ \\
+%\textbf{Question:} What is 1 pc in SI units (m)? \\
+%\textbf{Answer:}
+%\begin{equation}
+%D = \frac{d}{p} = \frac{1.496 \times 10^{11} }{4.85 \times 10^{-6}} = 3.09 \times 10^{16} \ \mrm{m}
+%\end{equation}
+%
+%\section{Luminosity and magnitudes}
+%The the photosphere of the sun is at roughly $6000 \:\mrm{K}$. The radius of the sun is $R_\odot = 6.96 \times 10^{8} \:\mrm{m}$. According to the Stefan-Boltzmann law, the luminosity of the sun is found to be
+%\begin{equation}
+%L _\odot = 4\pi R_\odot ^{2} \times \sigma _\mrm{SB} T^{4} = 4 \times 10^{26} W
+%\end{equation}
+%The flux, defined as the power per unit area, is therefore
+%\begin{equation}
+%F = \frac{L_\odot}{4\pi r^{2}} \approx 1400 \mrm{W/m}^{2}
+%\end{equation}
+%Compare this number with the expected output of a $1 \:\mrm{m}^{2}$ solar panel.
+%
+%Astronomers tend to use magnitudes to describe the brightness of objects on the sky. The definition is
+%\begin{equation}
+%m = -2.5 \log _{10} \left( \frac{F}{1 \mrm{W/m}^{2}} \right) + \mrm{const}.
+%\end{equation}
+%This approach to measuring brightness has some nice features. For example, we know that for Vega, a star that is 25 light-years, we have $F_\odot / F_\mrm{vega} = 5\times 10^{10}$. From this we find that
+%\begin{equation}
+%m_\odot - m_V = -2.5 \log _{10} \left( \frac{F_\odot}{F_V} \right) = -2.5 \times 10.7 = -26.7.
+%\end{equation}
+%The relative magnitude of Vega compare to the sun is -26.7. Relative scales in astronomy are useful because absolute measurements are complicated by things like the Earth's atmosphere (which can change depending on the time and frequency). We can observe objects on the sky over a wide range. For example, the Hubble space telescope is able to observe objects down to an apparent magnitude of about~$+30$.
+%
+%\begin{figure}[t]
+%\begin{center}
+%    \includegraphics*[angle=0,width=0.5\textwidth]{img/cepheids.png}
+%    \caption[Insert text]{A typical cepheid light curve similar to the ones that Leavitt measured. The graph shows apparent magnitude as a function of time.}
+%\label{fig:cepheids}
+%\end{center}
+%\end{figure}
+%
+%We can also define an absolute magnitude scale. This number represents the intrinsic luminosity of an object and it is therefore harder to measure. We can define the absolute magnitude as the magnitude exactly 10~pc away from the object (normally star).  Then
+%\begin{equation}
+%m_X - M = -2.5 \log _{10} \left( \frac{F_X}{F_M} \right) = -2.5 \log _{10} \left( \frac{(10 \:\mrm{pc})^{2}}{r^{2}_X} \right),
+%\end{equation}
+%which implies that
+%\begin{equation}
+%m_X - M = -2 \times 2.5 \log_{10} \left( \frac{10 \:\mrm{pc}}{r_X} \right) = 5 \log _{10} \left( \frac{r_x}{10 \: \mrm{pc}} \right).
+%\end{equation}
+%
+%We can use these definitions to characterize the brightness of astrophysical objects with time. Henrietta Leavitt performed such measurements in the early 20th century. She noted a class of pulsating stars, now referred to as "cepheids", that varied by 1-2 in relative magnitude over a period of a few days.\footnote{Cepheids are named after the star $\delta$-Cephei in the constellation of the Cepheus.} This variation was observed to be incredibly repeatable. Leavitt cataloged over 1500 variable stars in the Magellanic Cloud and discovered that brighter Cepheids take a longer time to vary (the period of oscillation is longer). This fact is now partially used to calibrate the distance scale of our universe (see future lectures). Figure \ref{fig:cepheids} shows a rough representation of the Cepheid magnitude as a function of time.
+%
+%When combining data on multiple cepheids, we see a clear relation between their luminosity and the period of oscillation (see Figure \ref{fig:lr}).
+%
+%\begin{figure}[t]
+%\begin{center}
+%    \includegraphics*[angle=0,width=0.6\textwidth]{img/luminosity_relation.png}
+%    \caption[Insert text]{Luminosity relation}
+%\label{fig:lr}
+%\end{center}
+%\end{figure}
+%
+%\section{Hubble-Lemaitre law}
+%The Hubble-Lemaitre law describes an apparent increase in recession velocity with distance.\footnote{Most people still refer to this as simply the Hubble law, but the International Astronomical Union (IAU) recently voted to change the name to acknowledge Lemaitre's role in the formulation of a cosmological model that incorporate an expanding universe.} Simply put, the Hubble law is
+%\begin{equation}
+%v = H d
+%\end{equation}
+%where $v$ is the recessional velocity, $d$ is the proper distance to a particular galaxy, and $H$ is some constant typically expressed in units of $\mrm{km /  s / Mpc}$. The measurements of Hubble and others showed that galaxies were predominantly receding away from us (the Milky Way) and that the velocity had a tendency to increase with distance. Figure \ref{fig:hubble} shows a famous graph published by Hubble in 1929 that roughly demonstrates this relationship. Hubble's early estimate put the constant at $H_0 = 500 \:\mrm{km /  s / Mpc}$. This has now been shown to be an overestimate, the more accurate value is closer to $H_0 = 70 \:\mrm{km /  s / Mpc}$.
+%
+%\begin{figure}[t]
+%\begin{center}
+%    \includegraphics*[angle=0,width=0.6\textwidth]{img/hubble_relation.png}
+%    \caption[Insert text]{Graph published in a paper by Edwin Hubble in 1929 showing the velocity-distance relation for a few galaxies.}
+%\label{fig:hubble}
+%\end{center}
+%\end{figure}
+%
+%A crucially important quantity in cosmology is referred to as redshift. Redshift is simply  Doppler shifting of light, which on cosmological always leads to an increase in the wavelength of incoming radiation. The measured quantity is 
+%\begin{equation}
+%z = \frac{\lambda _\mrm{obs} - \lambda _\mrm{lab}}{\lambda _\mrm{lab}} = \frac{\Delta \lambda}{\lambda _\mrm{lab}} \approx \frac{v}{c}.
+%\end{equation} 
+%For small velocities (compared to the speed of light), this implies that
+%\begin{equation}
+%v = c z,
+%\end{equation}
+%where $c$ is the speed of light in vacuum (roughly $2.998 \times 10^{8} \:\mrm{m/s}$). 
+%
+%Taken at face value, Hubble's discovery implies that the Universe is expanding. 
+%
+% \begin{note}
+% The popular literature contains a wealth of publications with brilliant descriptions of the early days of cosmology \cite{Lemaitre2005, Guth1997, Singh2005, Weinberg1993}. As astronomical observatories accumulated data, it became clear that the universe contained a large number of galaxies similar to our own. So far, nothing suggests our own galaxy is much different from the estimated hundreds of billions of galaxies in the observable universe. Similarly, our location in the Milky Way, our own galaxy, seems arbitrary. This gives some credence to the Copernican principle.
+% \end{note}
+% 
+%\begin{figure}[t]
+%\begin{center}
+%    \includegraphics*[angle=0,width=0.8\textwidth]{img/hubble.png}
+%    \caption[Insert text]{The balloon analogy for Hubble expansion. To some extent, gravitationally bound systems are independent to the expansion of space.}
+%\label{fig:hubble_expansion}
+%\end{center}
+%\end{figure}
+% 
+% 
+%The Copernican principle states that we, as observers of the universe, do not have the benefit of a privileged vantage point. The cosmological principle states that on large enough scales, the universe is both homogenous and isotropic. 
+% 
+%Homogenity: The universe looks the same at each point.
+%
+%Isotropy: The universe looks the same in every direction.
+%
+%Modern sky surveys suggest that our local universe is isotropic and homogenous over the largest scales that we can observer and we assume that this is a property of the universe as a whole.
+%
+%In a universe that is expanding, it is helpful to introduce the concept that relates physical distances at any point in time to distances at a fixed reference time. We can write
+%\begin{equation}
+%r(t) = a(t) \chi
+%\end{equation}
+%where $r(t)$ is the physical distance at time $t$, $a(t)$ is a dimensionless scaling factor that represents the expansion of space with time, and $\chi$ is the so-called comoving distance which remains constant while space expands. The scale factor is a crucial concept in cosmology. 
+%
+%\section{Blackbody Radiation}
+%The Planck blackbody radiation formula plays a crucial role in cosmology
+%\begin{equation}
+%B(\nu, T) = \frac{2h\nu^3}{c^2} \frac{1}{e^\frac{h\nu}{kT} - 1} \quad [\mrm{W/m^2/Hz/sr}].
+%\end{equation}
+%The equation describes the spectral radiance of a blackbody as a function of frequency and the temperature of the blackbody. The universe is permiated with radiation that can be well characterized as that of a $2.7\:\mrm{K}$ blackbody. This is the so-called cosmic microwave background.
+%
+%
+%\section{Important concepts}
+%Here are some important concepts and/or phenomena to take away from the course material that are not covered in these lecture notes:
+%\vspace{-7mm}
+%\begin{itemize}
+%\item Stars
+%\item Galaxies
+%\item Local group
+%\item Galaxy clusters
+%\item Large-scale smoothness of the universe
+%\item Microwave, infrared, x-ray, and radio wavelength radiation
+%
+%\end{itemize}
+%
+%
+%
+ 
+%\begingroup
+%%\bibliographystyle{unsrt85}
+%%\bibliographystyle{unsrtnat}
+%\bibliographystyle{unsrtnat}
+%%\bibliographystyle{science}
+%%\setlength{\bibitemsep}{-5pt}
+%\linespread{0.5}\selectfont
+%\bibliography{lecture13}
+%%{\bibliography{snsb2019}}
+%\endgroup
+
+\end{document}
+%%
+%% EOF
