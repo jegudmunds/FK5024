@@ -1,0 +1,448 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatexmk
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{redefine-sections}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{bibspacing}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{empheq}
+
+\newcommand{\boxedeq}[2]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align}\label{#1}#2\end{empheq}}
+\newcommand{\coloredeq}[2]{\begin{empheq}[box=\colorbox{lightgreen}]{align}\label{#1}#2\end{empheq}}
+
+\makeatletter
+
+% Redefine maketitle
+%
+\def\maketitle{%
+\par\textbf{\@title}%
+\par{\@author}%
+\par}
+
+% Redefine \em and \emph
+%
+\DeclareRobustCommand{\em}{%
+  \@nomath\em \if b\expandafter\@car\f@series\@nil
+  \normalfont \else \bfseries \fi}
+
+\makeatother
+
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\lhead{\textsc{FK5024}}
+\rhead{\textsc{Lecture 14}}
+\pagestyle{fancy}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5em}
+\renewcommand{\familydefault}{\sfdefault}
+
+%  frequent science terms
+\newcommand{\lcdm}{$\mathrm{\Lambda CDM}$ }
+\newcommand{\lcdmn}{$\mathrm{\Lambda CDM}$}
+\newcommand{\etal}{et al.\@ }
+\newcommand{\etaln}{et al.\@}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+
+%% From Header.tex, see tmp/
+%% http://www.dfcd.net/articles/latex/latex.html
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\vv}[1]{\ensuremath{\vec{\mathbf{#1}}}} % for vectors2
+\newcommand{\vvv}[1]{\ensuremath{{\bm{#1}}}} % for vectors2
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}}
+\newcommand{\ellp}{\ell '}
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left\vert #1 \right\vert} % for absolute value
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}{d}
+\newcommand{\dder}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\ddder}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newcommand{\vhat}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for vectors
+\newcommand{\vvhat}[1]{\ensuremath{\bm{\hat{#1}}}} % for vectors
+
+\usepackage{xcolor}
+\definecolor{linkc}{RGB}{43,116,165}
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mybrown}{RGB}{128,64,0}
+
+
+\definecolor{linkc}{RGB}{31,93,135}
+\newcommand{\linkc}[1]{\textcolor{linkc}{#1}}
+\newcommand{\linkcb}[1]{\textbf{\textcolor{linkc}{#1}}}
+
+
+\usepackage{tcolorbox}
+
+\mathchardef\mhyphen="2D
+
+\tcbuselibrary{theorems}
+\newtcolorbox{warning}{colback=mybrown!5!white,colframe=mybrown!45!white, title = Warning}
+
+\newtcolorbox{attention}{colback=mybrown!5!white,colframe=mybrown!45!white}
+
+\theoremstyle{plain}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{definitionT}{Note}%[section]
+\usepackage[framemethod=default]{mdframed}
+%\newmdenv[backgroundcolor=red]{tBox}
+%\newmdenv[leftmargin=1cm,linecolor=blue]{aBox}
+%\RequirePackage[framemethod=default]{mdframed}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+
+\newmdenv[skipabove=12pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=mybrown,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=25pt,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}
+
+\newenvironment{note}{
+\begin{dBox}
+\begin{definitionT}}
+{\end{definitionT}
+\end{dBox}}
+
+\begin{document}
+\fontsize{5mm}{6mm}\selectfont\thispagestyle{empty}
+
+\thispagestyle{empty}
+\begin{center}
+\textsc{Lecture 14}\\[1.5ex]
+{\Huge FK5024: Particle and Nuclear Physics, Astrophysics and Cosmology\\}
+\vspace{3mm}
+{\large PART III: Astrophysics and Cosmology \\}
+%\vspace{3mm}
+Jon E. Gudmundsson\footnote{\href{http://jon.fysik.su.se}{\linkc{http://jon.fysik.su.se}}} \\
+%\vspace{-3mm}
+\linkc{jon@fysik.su.se}
+\end{center}
+
+This lecture will focus on some features of a universe that is described by the Friedmann equations. We will introduce the concept of dark energy (cosmological constant) as well as the so-called critical density. We will also look at a model that combines energy contributions from multiple sources. We will discuss current best estimates for the total energy budget of the universe.
+\begin{attention}
+This lecture should be supplemented by Liddle: 6-9
+\end{attention}
+
+\section{The cosmological constant}
+In the early 20th century---even in the presence of Hubble's observations---Einstein and the majority of astronomy and physics communities were against the concept of an expanding universe.\footnote{There must be dozens of books discussing this period in the development of cosmology. One book that I particularly liked describes the role of Geogre Lemaitre in this story \cite{Lemaitre2005}.} To combat this, Einstein famously implemented a cosmological constant. With this additional term, the 1st Friedmann equation becomes
+\begin{equation}
+\left( \frac{\dot{a}}{a} \right)^{2} = \frac{8\pi G}{3} (\rho _m + \rho _r)  - \frac{k}{a^{2}} + \frac{\Lambda}{3}.
+\label{eq:friedmann1}
+\end{equation}
+%Note that this implies
+%\begin{equation}
+%\rho _\Lambda = \frac{\Lambda}{8\pi G}.
+%\end{equation}
+In a universe that accommodates matter, radiation, and a cosmological constant, the acceleration equation becomes
+\begin{equation}
+\frac{\ddot{a}}{a} = - \frac{4 \pi G}{3} \sum _{i \in [\mrm{m}, \mrm{r}, \Lambda]}(\rho_i +3p_i) = - \frac{4 \pi G}{3} \sum _{i \in [\mrm{m}, \mrm{r}, \Lambda]}\rho_i(1 +3w_i),
+\end{equation}
+where we assume that there's an equation of state that allows one to write
+\begin{equation}
+p_i = w_i \rho _i.
+\end{equation}
+Note that m, r, and $\Lambda$, correspond to matter, radiation, and a cosmological constant, respectively.
+
+\begin{note}
+For most purposes and in most scientific discussion, dark matter and ordinary baryonic matter are treated separately. However, when it comes to describing the equation of state of these two constituents, they are treated equally. Both dark matter and ordinary matter are treated as a pressureless component ($w=0$). This is consistent with a picture where dark matter particles correspond to unidentified non-relativistic particles (cold dark matter).
+\end{note}
+
+Einstein invoked the cosmological constant to balance the contributions of energy density, $\rho$, curvature, $k$, and the cosmological constant, $\Lambda$, so that we would get
+\begin{equation}
+H(t) = 0.
+\end{equation} 
+This turns out to be quite difficult in the presence of the two Friedmann equations, since any solution that gives $H(t)=0$ is unstable to perturbations. 
+
+It is instructive to look at the acceleration equation in the presence of a cosmological constant. It becomes
+\begin{equation}
+\frac{\ddot{a}}{a} = -\frac{4\pi G}{3} \left( \rho + 3p \right) + \frac{\Lambda}{3}.
+\end{equation}
+If a positive cosmological constant term dominates the first term, it will induce a positive value for $\ddot{a}$. In other words, a relatively large and positive cosmological constant will lead to accelerated expansion. %This could therefore explain the current day observation of an accelerated expansion. 
+
+The modern interpretation is that $\Lambda$ represents vacuum energy; the idea that empty space has an intrinsic energy density. Figure \ref{fig:vacuum} shows the qualitative difference between a classical vacuum and one that is full of pseudo-particles that are popping in and out of existence. 
+
+When attempting to calculate the expected value for the energy density of vacuum, high-energy physicists (or particle physicists) find that the expected value is in the range of 60-120 orders of magnitude greater than what is suggested by current cosmological limits on magnitude of the cosmological constant. This is known as the cosmological constant problem or the vacuum catastrophe.
+
+\subsection{Equation of state for cosmological constant}
+Let's define
+\begin{equation}
+\rho _\Lambda \equiv \frac{\Lambda}{8\pi G} \quad \mrm{(constant)}.
+\end{equation}
+This gives
+\begin{equation}
+\left( \frac{\dot{a}}{a} \right) ^{2} = \frac{8 \pi G}{3} (\rho_\mrm{m} + \rho_\mrm{r} + \rho _\Lambda )- \frac{k}{a^{2}}.
+\end{equation}
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.7\textwidth]{img/vacuum_fluctuations.png}
+    \caption[Vacuum fluctuations]{Vacuum fluctuations in "empty space" compared to classical empty space. Particles are popping in and out of existence leading to non-zero average energy of empty space.  }
+\label{fig:vacuum}
+\end{center}
+\end{figure}
+
+The requirement that $\rho _\Lambda$ is constant implies that $\dot{\rho} _\Lambda = 0$. We can now use the fluid equation to derive the equation of state for dark energy.
+\begin{align}
+&\dot{\rho} _\Lambda + 3\left(\frac{\dot{a}}{a} \right) (\rho _\Lambda + p _\Lambda) = 0 \nonumber \\
+&\Rightarrow \rho _\Lambda + p _\Lambda = 0. 
+\end{align}
+In other words $\rho _\Lambda = - p _\Lambda$. Using our standard notation, $p = w\rho$, we get $w=-1$. If the energy density is positive we therefore must have negative pressure!
+
+%, $\rho _\Lambda > 0$, we get $p _\Lambda < 0$ which implies negative pressure.
+\section{Critical density}
+Examining the 1st Friedmann equation, we see that there is a value for the total energy density, $\rho$ that forces $k=0$. This density is 
+\begin{equation}
+\rho _c \equiv \frac{3H^{2}(t)}{8\pi G}.
+\end{equation}
+Evaluated at the current epoch $t=t_0$, this number is 
+\begin{equation}
+\rho _c(t_0) = \frac{3H_0^{2}}{8\pi G} = 1.88 \times 10^{-26} \:h^{2}\mrm{\frac{kg}{m^{3}}}.
+\end{equation}
+Note that mass of the proton is $1.67 \times 10^{-27} \:\mrm{kg}$. Assuming $h=0.7$, the critical density then corresponds to approximately 5-6 protons per cubic meter! This sounds like a really small number. However, when we look at cosmological distances this does not sound as strange.
+
+Remembering that $G = 6.67 \times 10{-11} \:\mrm{m^{3} \, kg^{-1} \, s^{-2}}$, $M _\odot = 1.99 \times 10^{30} \:\mrm{kg}$, and $1\:\mrm{Mpc} = 3.09 \times 10^{22} \:\mrm{m^{3}}$ we get 
+\begin{equation}
+\rho _\mrm{c} = 2.8 h^{-1} \times 10^{11} m_\odot / (h^{-1} \:\mrm{Mpc} )^{3}.
+\end{equation}
+Note that mass of the Milky Way is estimated at approximately $1\times10^{12} \: m_\odot$ and the typical distance between galaxies is of order $1 \:\mrm{Mpc}$.
+
+It is standard to define the density parameter relative to the critical density
+\begin{equation}
+\Omega (t) = \frac{\rho(t)}{\rho_\mrm{c} (t)} = \frac{\rho_\mrm{m}(t) + \rho_\mrm{r}(t)}{\rho_\mrm{c}(t)} = \Omega _\mrm{m}(t) + \Omega _\mrm{r}(t).
+\end{equation}
+We sometimes drop the time-dependence (leave it implicit). In this case, the 1st Friedmann equation for a universe that includes both matter and radiation becomes
+\begin{align}
+H^{2} &= \frac{8 \pi G}{3} \rho_\mrm{c} \Omega - \frac{k}{a^{2}}, \nonumber \\
+&= H^2 \Omega - \frac{k}{a^{2}}
+\end{align}
+where $\Omega = \Omega _\mrm{r} + \Omega _\mrm{m}$ and we can rearrange to find
+\begin{equation}
+\Omega - 1 = \frac{k}{a^{2}H^{2}}.
+\end{equation}
+Note that $\Omega = 1$ is a special case since $k$ is a constant. It implies that $\Omega = 1$ at all times. After defining
+\begin{equation}
+\Omega _\Lambda \equiv \frac{\Lambda}{3H^{2}(t)},
+\end{equation}
+and
+\begin{equation}
+\Omega _k \equiv -\frac{k}{H^{2}(t)a^{2}(t)},
+\end{equation}
+we can also rewrite the above equation to get 
+\begin{equation}
+\Omega + \Omega _k = 1.
+\end{equation}
+If we're including a cosmological constant, we would get
+\begin{equation}
+\Omega _\mrm{r} + \Omega _\mrm{m} + \Omega _\mrm{\Lambda} + \Omega _k = 1.
+\end{equation}
+In a flat universe ($k=0$), 
+\begin{equation}
+\Omega _\mrm{r} + \Omega _\mrm{m} + \Omega _\mrm{\Lambda} = 1.
+\end{equation}
+The time-evolution of different energy components is coupled.
+
+
+
+%Let's define
+%\begin{equation}
+%\rho _\Lambda \equiv \frac{\Lambda}{8\pi G} \quad \mrm{(constant)}.
+%\end{equation}
+%This gives
+%\begin{equation}
+%\left( \frac{\dot{a}}{a} \right) ^{2} = \frac{8 \pi G}{3} (\rho_\mrm{m} + \rho_\mrm{r} + \rho _\Lambda )- \frac{k}{a^{2}}.
+%\end{equation}
+%Then, from the fluid equation and assuming $\rho _\Lambda = \mrm{constant} \Rightarrow \dot{\rho} _\mrm{\Lambda} = 0$, we have 
+%\begin{align}
+%\dot{\rho} _\Lambda + 3 \left( \frac{\dot{a}}{a} \right) (\rho _\Lambda + p_\Lambda) = 0 \nonumber \\
+%\Rightarrow \rho _\Lambda + p_\Lambda = 0 \\
+%\Rightarrow p _\Lambda = - \rho_\Lambda
+%\end{align}
+%If the cosmological constant is positive it must also be accompanied by a negative pressure term! Note that the cosmological constant is often associated with dark energy.
+
+\section{Total energy budget}
+We can put all of this together to find that 
+\begin{equation}
+\frac{k}{a^2 H^2} = \Omega _\mrm{r} + \Omega _\mrm{m} + \Omega _\mrm{\Lambda} - 1.
+\end{equation}
+The curvature of the universe depends on the fractional contribution of different energy components. We find that:
+\vspace{-5mm}
+\begin{itemize}
+\item Open universe: $k < 0$ and $\Omega _\mrm{r} + \Omega _\mrm{m} + \Omega _\mrm{\Lambda} < 1$
+\item Flat universe: $k = 0$ and $\Omega _\mrm{r} + \Omega _\mrm{m} + \Omega _\mrm{\Lambda} = 1$
+\item Closed universe: $k > 0$ and $\Omega _\mrm{r} + \Omega _\mrm{m} + \Omega _\mrm{\Lambda} > 1$ 
+\end{itemize}
+We can define
+\begin{equation}
+\Omega _\mrm{m,0} \equiv \Omega _\mrm{m} (t=t_0), \quad \Omega _\mrm{r,0} \equiv \Omega _\mrm{r} (t=t_0), \quad \Omega _\mrm{\Lambda,0} \equiv \Omega _\mrm{\Lambda} (t=t_0),
+\end{equation}
+which allows us to write
+\begin{equation}
+H^{2}(t) = H_0^{2} \left[ \Omega _\mrm{m,0} \left( \frac{a_0}{a} \right)^{3} + \Omega _\mrm{r,0} \left( \frac{a_0}{a} \right)^{4} + \Omega _k \left( \frac{a_0}{a} \right)^{2} + \Omega _{\Lambda, 0} \right].
+\end{equation}
+This is sometimes written in terms of redshift
+\begin{equation}
+H^{2}(z) = H_0^{2} \left[ \Omega _\mrm{m,0} (1+z)^{3} + \Omega _\mrm{r,0} (1+z)^{4} + \Omega _{k} (1+z)^{2} + \Omega _{\Lambda, 0} \right]. 
+\end{equation}
+Current best estimates suggest that $\Omega _\mrm{m,0} \sim 0.3$, $\Omega _\mrm{r,0} \sim 1\times10^{-5}$, $\Omega _\mrm{k} \sim 1\times10^{-3}$, $\Omega _\mrm{\Lambda,0} \sim 0.7$. In other words, at the present epoch it would appear that matter and dark energy dominate. Furthermore, recent observations from the \textit{Planck} satellite limit the curvature of the Universe to
+\begin{equation}
+\Omega _\mrm{k} = 0.001 \pm 0.002.
+\end{equation}
+In other words, current best estimates suggest that the universe if flat.
+
+Figure \ref{fig:history} shows a selection of time evolution histories of the scale factor for different values of the total universe energy density.
+ 
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/history_of_universe.png}
+    \caption[Scale factor development]{Scale factor as a function of time for different total energy densities. Figure adapted from a similar figure found in Dr. Neil Trentham's lecture notes.}
+\label{fig:history}
+\end{center}
+\end{figure}
+
+\section{Deceleration/acceleration parameter}
+We can Taylor expand the scale factor around $t = t_0$.
+\begin{equation}
+a(t) = a(t_0) + \dot{a}(t_0)(t-t_0) + \frac{1}{2}\ddot{a}(t_0)(t-t_0)^2 + \ldots
+\end{equation}
+Dividing through:
+\begin{align}
+a(t) &= a(t_0) \left[ 1 + \frac{\dot{a}(t_0)}{a(t_0)}(t-t_0) + \frac{1}{2}\frac{\ddot{a}(t_0)}{a(t_0)}(t-t_0)^2 + \ldots \right] \nonumber \\
+&\equiv a(t_0) \left[ 1 + H(t_0)(t-t_0) - \frac{q_0}{2} H_0^2(t-t_0)^2 + \ldots \right],
+\end{align}
+where 
+\begin{equation}
+q_0 \equiv \frac{-\ddot{a}(t_0)}{a(t_0) H^2_0} = -\frac{a(t_0)\ddot{a}(t_0)}{\dot{a}^2 (t_0)}
+\end{equation}
+is the (dimensionless) deceleration parameter. 
+
+Separate energy components evolve differently with the scale factor and from the acceleration equation we find 
+\begin{align}
+\frac{\ddot{a}}{a} &= - \frac{4\pi G}{3} \sum _i \rho _i (1 + 3w_i) \\
+&\Rightarrow q_0 = \frac{-\ddot{a}(t_0)}{H_0^{2}a(t_0)} = \frac{4\pi G}{3H_0^{2}} \sum_i \rho _i (1 + 3w_i)
+\end{align}
+Noting that $4\pi G / (3 H_0^{2})$ is a constant we see that "fluids" with a positive value for $w$ will decelerate the rate of expansion. Dark energy on the other hand, tends to accelerate the rate of expansion.
+
+\section{Connection to exam}
+\textit{It can be useful to connect the lecture material to types of questions that might possible pop up on an exam. Here's a typical exam question:}
+
+\textbf{Question:} We assume that Type Ia variables are standard candles and therefore that their luminosity is fixed, $L = L_\mrm{sn}$. We observe a supernova in a satellite galaxy of the Milky Way (our own galaxy) and thankfully we also have observations of cepheid variables that help us determine the distance to this supernova, $R_0$. The flux from this supernova is $F_0$. We now detect a supernova in what appears to be a distant galaxy. The relative magnitude of this supernova compared to close-by supernova is $\Delta m = +9$. Assuming that the luminosity of these two stellar remnants is the same. Derive an equation that describes the distance to the far-away supernova in terms of $R_0$ and $z$ for \textbf{a)} a universe that is static; \textbf{b)} in a universe that is expanding such that $a(t_0)/a(t) = 1 + z$ where $a(t)$ is the scale factor and $z$ is the redshift.
+
+\textbf{Answer:} 
+
+\textbf{a)} From lecture 11, in a static universe we know that the apparent magnitude can be written as
+\begin{equation}
+m _0 = -2.5 \log _{10}  \left( \frac{F_0}{F _\mrm{ref}} \right) + \mrm{const}.
+\end{equation} 
+is the magnitude of the nearby supernova. The magnitude of the distant supernova is 
+\begin{equation}
+m _1 = -2.5 \log _{10}  \left( \frac{F_1}{F _\mrm{ref}} \right) + \mrm{const}.
+\end{equation}
+The relative magnitude of the distant supernova compared to the nearby one is therefore 
+\begin{equation}
+\Delta m = m _1 - m _0 = -2.5 \log _{10}  \left( \frac{F_1}{F _0} \right) = 9.0
+\end{equation}
+Using the relation between luminosity and flux, $F \propto R^{-2}$ we see that 
+\begin{equation}
+m _1 = -5 \log _{10}  \left( \frac{R_\mrm{ref}}{R _1} \right) + \mrm{const}.
+\label{eq:magnitude}
+\end{equation}
+which allows us to write
+\begin{align}
+\Delta m &=  \log _{10}  \left( \frac{R_0}{R _1} \right) = -9/5 \\
+& \Rightarrow R_1 = R_0/10^{-9/5} \\
+& \Rightarrow R_1 \approx 63.1 R_0
+\end{align}
+\textbf{b)} In a universe that is expanding we will have to change the luminosity relation. Instead of $F = L/(4\pi R^{2})$ we now have 
+\begin{equation}
+F = \frac{L}{4\pi R^{2} (1+z)^{2}}.
+\end{equation}
+Plugging into Equation \ref{eq:magnitude}, and assuming that the redshift of the reference supernova is $z \approx 0.0$, we get
+\begin{equation}
+m _1 = -5 \log _{10}  \left( \frac{R_1(1+z)}{R _\mrm{ref}} \right) + \mrm{const}.
+\end{equation}
+So
+\begin{equation}
+R_1 = 10^{\Delta m/5} R_0 / (1+z).
+\end{equation}
+In an expanding universe, we find that physical distance to the supernova is less than we would assume from a static universe. The photons lose energy because of redshift.
+ 
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.6\textwidth]{img/history_of_universe_zoomed.png}
+    \caption[Distance modulus vs redshift]{The absolute magnitude (or distance modulus) as a function of redshift for a collection of Type Ia observations. Unlike in the previous figure, we are now looking backwards in time as we move to the right on the graph. Measurements appear consistent with a positive second derivative in the slope which would indicate accelerated expansion.}
+\label{fig:acceleration}
+\end{center}
+\end{figure}
+
+\section{Recent observations of accelerated expansion}
+Let's now connect the above question to today's lecture notes. 
+
+Recent observations of Type Ia supernova suggest that the Universe is expanding. This observation led to the awarding of a Nobel prize in 2011. In effect, the supernova measurements show that the deceleration parameter is positive; that the scale factor has a positive second time derivative.
+
+Figure \ref{fig:acceleration} shows a cartoon version of the type of Hubble diagrams that are used to support this claim. Data for hundreds of Type Ia supernova, which we assume are standard candles, have been gathered. These supernovae are found in galaxies covering redshifts up to about $z\approx1.5$. The distance modulus, or the absolute magnitude, is plotted as a function of redshift. Different cosmological models are shown for comparison. These models are generated using numerical calculations that allow us to evolve the scale factor for different energy density scenarios. It would appear that models with a positive 2nd derivative (acceleration) fit the date points more accurately. In particular, models with $\Omega _\mrm{m} \approx 0.3$ and $\Omega _\Lambda \approx 0.7$.
+ 
+\begingroup
+%\bibliographystyle{unsrt85}
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{unsrtnat}
+%\bibliographystyle{science}
+%\setlength{\bibitemsep}{-5pt}
+\linespread{0.5}\selectfont
+\bibliography{lecture14}
+%{\bibliography{snsb2019}}
+\endgroup
+
+\end{document}
+%%
+%% EOF

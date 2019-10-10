@@ -1,0 +1,19 @@
+%% This package redefines the layout of the sections, subsections and
+%% subsubsection to something that I find nice.
+%%
+%% Rahman Amanullah, 991228
+\ProvidesPackage{redefine-sections}[1999/12/28]
+\renewcommand{\section}{\@startsection{section}% name
+    {1}%                                       % level
+    {\z@}%                                     % indent
+    {-3.25ex\@plus -1ex \@minus -.2ex}%        % beforeskip
+    {1.5ex \@plus .2ex}%                       % afterskip
+    {\Large\sf\bfseries}}                   % style
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}%
+    {-3.25ex\@plus -1ex \@minus -.2ex}{0.2ex \@plus .2ex}
+    {\normalfont\large\sf\bfseries}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}%
+    {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}
+    {\normalfont\normalsize\sf\slshape}}
+%% EOF
+  
