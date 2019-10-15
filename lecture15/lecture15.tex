@@ -1,0 +1,460 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatexmk
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{redefine-sections}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{bibspacing}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{empheq}
+
+\newcommand{\boxedeq}[2]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align}\label{#1}#2\end{empheq}}
+\newcommand{\coloredeq}[2]{\begin{empheq}[box=\colorbox{lightgreen}]{align}\label{#1}#2\end{empheq}}
+
+\makeatletter
+
+% Redefine maketitle
+%
+\def\maketitle{%
+\par\textbf{\@title}%
+\par{\@author}%
+\par}
+
+% Redefine \em and \emph
+%
+\DeclareRobustCommand{\em}{%
+  \@nomath\em \if b\expandafter\@car\f@series\@nil
+  \normalfont \else \bfseries \fi}
+
+\makeatother
+
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\lhead{\textsc{FK5024}}
+\rhead{\textsc{Lecture 15}}
+\pagestyle{fancy}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5em}
+\renewcommand{\familydefault}{\sfdefault}
+
+%  frequent science terms
+\newcommand{\lcdm}{$\mathrm{\Lambda CDM}$ }
+\newcommand{\lcdmn}{$\mathrm{\Lambda CDM}$}
+\newcommand{\etal}{et al.\@ }
+\newcommand{\etaln}{et al.\@}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+
+%% From Header.tex, see tmp/
+%% http://www.dfcd.net/articles/latex/latex.html
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\vv}[1]{\ensuremath{\vec{\mathbf{#1}}}} % for vectors2
+\newcommand{\vvv}[1]{\ensuremath{{\bm{#1}}}} % for vectors2
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}}
+\newcommand{\ellp}{\ell '}
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left\vert #1 \right\vert} % for absolute value
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}{d}
+\newcommand{\dder}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\ddder}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newcommand{\vhat}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for vectors
+\newcommand{\vvhat}[1]{\ensuremath{\bm{\hat{#1}}}} % for vectors
+
+\usepackage{xcolor}
+\definecolor{linkc}{RGB}{43,116,165}
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mybrown}{RGB}{128,64,0}
+
+
+\definecolor{linkc}{RGB}{31,93,135}
+\newcommand{\linkc}[1]{\textcolor{linkc}{#1}}
+\newcommand{\linkcb}[1]{\textbf{\textcolor{linkc}{#1}}}
+
+
+\usepackage{tcolorbox}
+
+\mathchardef\mhyphen="2D
+
+\tcbuselibrary{theorems}
+\newtcolorbox{warning}{colback=mybrown!5!white,colframe=mybrown!45!white, title = Warning}
+
+\newtcolorbox{attention}{colback=mybrown!5!white,colframe=mybrown!45!white}
+
+\theoremstyle{plain}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{definitionT}{Note}%[section]
+\usepackage[framemethod=default]{mdframed}
+%\newmdenv[backgroundcolor=red]{tBox}
+%\newmdenv[leftmargin=1cm,linecolor=blue]{aBox}
+%\RequirePackage[framemethod=default]{mdframed}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+
+\newmdenv[skipabove=12pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=mybrown,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=25pt,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}
+
+\newenvironment{note}{
+\begin{dBox}
+\begin{definitionT}}
+{\end{definitionT}
+\end{dBox}}
+
+\begin{document}
+\fontsize{5mm}{6mm}\selectfont\thispagestyle{empty}
+
+\thispagestyle{empty}
+\begin{center}
+\textsc{Lecture 15}\\[1.5ex]
+{\Huge FK5024: Particle and Nuclear Physics, Astrophysics and Cosmology\\}
+\vspace{3mm}
+{\large PART III: Astrophysics and Cosmology \\}
+%\vspace{3mm}
+Jon E. Gudmundsson\footnote{\href{http://jon.fysik.su.se}{\linkc{http://jon.fysik.su.se}}} \\
+%\vspace{-3mm}
+\linkc{jon@fysik.su.se}
+\end{center}
+Today we will focus on the cosmic microwave background and its relation to the early universe. We will also discuss the role that radiation played prior to recombination and contrast it with observations today that suggest that radiation contributes a relatively small chunk of the total energy density of the Universe. First, however, we will talk about dark matter.
+\begin{attention}
+This lecture should be supplemented by Liddle: 9-12
+\end{attention}
+
+\section{Dark matter}
+The matter energy of the universe is estimated at $\Omega _\mrm{m} \approx 0.3$. However, observations suggest that normal matter (baryons) in the form of stars, gas, and dust, make up only about 5\% of the critical energy density. The rest of the matter density is in some form of dark matter component, $\Omega _\mrm{c}$. We can write 
+\begin{equation}
+\Omega _\mrm{m} = \Omega _\mrm{b} + \Omega _\mrm{c} \approx 0.3.
+\end{equation}
+This obviously implies that the dark matter makes up about 25\% of the total energy density of the Universe. But what is dark matter and why should we believe it's there?
+
+There are numerous independent observations that support the dark matter hypothesis. These include:
+\vspace{-5mm}
+\begin{itemize}
+\item Lack of visible mass, accounting for stars and gas only gives $\Omega _\mrm{b} \sim 0.05$
+\item Observations of galaxy rotation curves; an effort famously spearheaded by Vera Rubin and collaborators
+\item Big bang nucleosynthesis only matches observed element abundance if
+\begin{equation}
+0.021 \leq \Omega _b h^2 \leq 0.025
+\end{equation}
+\item The formation of structure in our universe cannot be explained by $\Omega _\mrm{m} \sim 0.05$ and it would seem that we need to add about $\Omega _\mrm{c} \sim 0.25$ weakly-interacting cold dark matter to get results that are consistent with observations
+\item The acoustic oscillations observed in the CMB power spectrum strongly suggest a cold dark matter component (see 9.1.6 and A5 in Liddle)
+\item (Extra) Observations of galaxy cluster mergers (Bullet cluster)
+\item (Extra) Strong gravitational lensing
+\end{itemize}
+Measurements of the so-called acoustic oscillations in the cosmic microwave background provide one of the strongest constraints on the amount of dark matter in the universe (see Section A5 in Liddle for those that are interested).
+
+\begin{note}
+Surprisingly, of the baryonic matter that we observe, only about 1/5 is in the form of stars. The rest is interstellar and intergalactic gas that has not had time to collapse and form stars. We can see this from galaxy clusters which appear to have heated surrounding gas to sufficiently high temperatures to make it glow in the x-ray spectrum (see Figure 2.3 in Liddle).  
+\end{note}
+
+\textbf{But what is dark matter?} As far as we can tell, dark matter can not be composed of standard model particles. Also, it has to be electrically neutral because otherwise it would shine through electromagnetic interactions. A popular hypothesis is that dark matter is just a distribution faint stars or brown stars (Jupiters), but this seems to be ruled out by ultra deep observations from the Hubble telescope. Neutrinos have also been suggested as possible dark matter candidates. However, we have already set limits on the mass of the neutrino that seems inconsistent with the idea that they constitute a large fraction of $\Omega _\mrm{m}$.
+Other popular dark matter candidates include:
+\vspace{-5mm}
+\begin{itemize}
+\item Weakly interacting massive particles (WIMPS) or axions
+\item Primordial black holes
+\item Massive compact halo objects (MACHOS)
+\item Something we have yet to think up
+\end{itemize}
+
+
+\section{The cosmic microwave background}
+The cosmic microwave background (CMB) is an isotropic blackbody radiation field with temperature 
+\begin{equation}
+T_\mrm{CMB} = (2.726 \pm 0.001) \,\mrm{K}.
+\end{equation}
+No matter what direction we point our mm-wavelength sensitive telescopes we will see the same monopole signal which is consistent with that of a blackbody of temperature $T_\mrm{CMB}$. 
+
+It turns out, however, that on top of the constant monopole signal there are $\mathcal{O}(10-100) \:\mrm{\mu K}$ anisotropies which encode information about some of the cosmic events that were ongoing prior, during, and even after the epoch when the CMB photons were emitted. Figure \ref{fig:cmb_anisotropies} shows the cosmic microwave background after we have removed a constant monopole signal and a dipole signal caused by our motion relative to the last scattering surface.
+
+\begin{note}
+We are moving in a roughly circular orbit around the sun with velocity $v_\mrm{orbit} = 30 \:\mrm{km/s}$. When we look at the CMB we find that there is a dipole signal (which we have removed from Figure \ref{fig:cmb_anisotropies}) corresponding to approximately $3 \:\mrm{mK}$, roughly 1/1000 the amplitude of the CMB monopole. The simplest explanation is that we are moving with velocity $v$ in the fixed reference frame defined by the last scattering surface and that there is a Doppler shift that is responsible for the dipole signal. If you remember the low-velocity limit of the relativistic Doppler equation, you can conclude that we are moving with velocity $v_\mrm{pecul.} \sim 300 \:\mrm{km/s}$ relative to the CMB.
+\end{note}
+
+\section{Historical sidenote [not on exam]}
+In the 1960's a group of physicists at Princeton University began to search for the presence of thermal radiation remaining from a ``primordial fireball.'' Their research was directed by Robert Dicke, who by then had made contributions to a wide range of physics, including radar development and atomic theory, but focused now on gravitation theory. Using microwave receiver technology that Dicke had developed twenty years earlier, called the Dicke radiometer, the Princeton group set about measuring this relic radiation on the roof of Guyot Hall in 1964. The experimental effort was led by Roll and Wilkinson \cite{FBB}. 
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/cmb_anisotropies.png}
+    \caption[CMB anisotropies]{The anisotropies of the cosmic microwave background. The monopole and dipole signal have been subtracted from this map in order to reveal the lower-amplitude primary anisotropies. Grey lines outline parts of the Galaxy that contaminate the CMB signal estimate. Image from ESA and the \textit{Planck} Collaboration.}
+\label{fig:cmb_anisotropies}
+\end{center}
+\end{figure}
+
+As the Princeton group was commencing its measurements another New Jersey duo, Penzias and Wilson, had begun using a radiometer for astronomical observations. Battling an unknown noise contaminant, the pair had exhausted all avenues of reason, as they resorted to the sweeping of pigeon droppings inside their monstrous receiver horn. The Bell Labs researchers eventually made contact with the Princeton group which helped them understand their predicament. Penzias and Wilson had serendipitously discovered the cosmic microwave background (CMB), an incredibly uniform blackbody signal coming from all directions on the sky \cite{Penzias1965}. Subsequent work by physicists at Princeton helped define the results and their theoretical implications \cite{Roll1966, Dicke1965}. The discovery of the CMB brought the big bang universe to the forefront of modern physics. Figure~\ref{fig:peebles_plot} shows the results from the first Bell Labs and Princeton measurements overlaid on a 3~K blackbody spectrum. 
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/peebles_plot.png}
+    \caption[The spectrum of the CMB]{The results of the two New Jersey measurements, published in 1966 \cite{Roll1966}, showing spectral radiance as a function of wavelength with a 3-K blackbody spectrum plotted for comparison. Both the Bell Labs (7.35~cm) and the Princeton measurement (3.2~cm) were performed safely within the Rayleigh-Jeans limit, almost two orders of magnitude below the peak value of a 3-K blackbody. Figure reproduced courtesy of P.~J.~E.~Peebles.}
+\label{fig:peebles_plot}
+\end{center}
+\end{figure}
+
+Despite common belief, one can argue that the 1964 Bell Labs measurements did not represent the first evidence for a uniform cosmic afterglow. The study of CN molecular spectra, published as early as 1940, suggested ``a maximum effective temperature of interstellar space'' of about~1--3~K~\cite{McKellar1940,Herzberg1950} and an excess temperature of space was reported during the commissioning of the Bell Labs receiver \cite{Ohm1961, 
+JonesThesis}. 
+
+\section{The CMB spectrum}
+Regardless of who should be acknowledged for the initial discovery, the study of the cosmic microwave background has been ongoing for more than 50 years, and we now know that the CMB is almost a perfect blackbody with temperature $T_{\mrm{CMB}} = 2.726\:\mrm{K}$ \cite{Fixsen2009}. Its spectral radiance as a function of frequency, $f$, follows the form
+\begin{equation}
+B(f, T) = \frac{2hf^{3}}{c^{2}}\frac{1}{\exp(hf /k_{\mrm{B}}T) -1},
+\end{equation}
+where $h$ and $k_{\mrm{B}}$ are Planck and Boltzmann constants respectively, $T$ is the blackbody temperature, and $c$ is the speed of light in vacuum. The corresponding energy density is
+\begin{equation}
+\epsilon (f, T) df = \frac{8\pi hf^{3}}{c^{3}}\frac{1}{\exp(hf /k_{\mrm{B}}T) -1},
+\end{equation}
+We can integrate the following expression over all frequencies to find the energy density in a blackbody radiation field of temperature $T$ (see Chapter 2 in Liddle and Francesco's tutorial). This gives
+\begin{equation}
+\epsilon _\mrm{rad} = \alpha T^{4},
+\label{eq:erad}
+\end{equation}
+where 
+\begin{equation}
+\alpha = \frac{\pi ^{2} k_\mrm{B}^{4}}{15 \hbar ^{3} c^{3}} = 7.565 \times 10 ^{-16} \:\mrm{J m^{-3} K^{-4}}.
+\end{equation}
+From Lecture 14 we know that the energy density of radiation scales like
+\begin{equation}
+\rho _\mrm{r} \propto \frac{1}{a^{4}}.
+\end{equation}
+Therefore, we see from Equation \ref{eq:erad} that 
+\begin{equation}
+T \propto \frac{1}{a}.
+\label{eq:Tvsa}
+\end{equation}
+The temperature of the CMB blackbody radiation field is inversely proportional to the scale factor, $a(t)$. 
+
+By plotting the Planck's blackbody radiation formula as a function of $k_\mrm{B}T$ we see that the peak in the distribution (roughly the mean) corresponds to $3k_\mrm{B}T$. This suggests that the typical energy of a photon in a 3-K blackbody radiation field is 
+\begin{equation}
+E _\mrm{mean} \approx 3 k_\mrm{B}T_\mrm{CMB} = 7.0 \times 10^{-4} \:\mrm{eV}.
+\end{equation}
+Clearly the CMB photons have a relatively low characteristic energy compared the energy required to ionize hydrogen ($13.6 \: \mrm{eV}$) and the average thermal energy in the classroom ($\sim 0.025 \: \mrm{eV}$).
+
+\vspace{-10mm}
+\begin{wrapfigure}{l}[1.2cm]{0.33\textwidth}
+\begin{center}
+    \vspace{-10mm}
+    \includegraphics*[angle=0,width=0.33\textwidth]{img/pie_chart.png}
+    \caption[Energy budget]{Energy budget.}
+\label{fig:eb}
+\end{center}
+\end{wrapfigure}
+
+\section{The radiation dominated era}
+In Lecture 14 we saw that there's a transition where the universe stops being radiation dominated and becomes matter dominated, and that this transition happens approximately 5000 years after the Big Bang. In the previous section we showed that the current energy density of the CMB photons is only a tiny fraction of the critical energy density. Figure \ref{fig:eb} shows the rough contributions from different constituents to the total energy density. Here, we ignore contributions from neutrinos for simplicity.
+
+It is instructive to estimates the temperature of the CMB radiation at the time of matter-radiation equality. 
+
+%$\Omega _\mrm{r} \approx 10^{-5}$ while $\Omega _\mrm{m} \approx 0.3$, $\Omega _\Lambda \approx 0.7$, and $\Omega _k < 0.001$. 
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/blackbody.png}
+    \caption[The blackbody spectrum]{The spectral radiance of a blackbody with temperature $T = 3500\,K$. The tail of the photon distribution exceeds the ground state energy of the hydrogen atom, 13.6\,eV (even though you don't see it on a linear scale).}
+\label{fig:blackbody}
+\end{center}
+\end{figure}
+
+%\newpage
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.70\textwidth]{img/history_of_time_rot.png}
+    \caption[The history of the Universe]{The history of the Universe.}
+\label{fig:hot}
+\end{center}
+\end{figure}
+
+Let's begin by estimating the fractional energy density of photons today. The temperature today ($z = 0$) is $T_\mrm{CMB} \approx 2.73$. From Equation \ref{eq:erad} we know that the total radiation energy density today is given as
+\begin{equation}
+\rho_\mrm{r}(t_0) = \alpha T_\mrm{CMB}^4 = 0.26 \,\mrm{eV/cm}^3,
+\end{equation}
+with $\alpha = 4.722 \times 10^{3}\,\mrm{eV}/\mrm{m}^3/\mrm{K}^4$. Similarly, we have 
+\begin{equation}
+\rho _\mrm{c} (t_0)  = \frac{3H_0^2}{8\pi G} \simeq 10,500 \, h^{2}\,\mrm{eV}/\mrm{cm}^3,
+\end{equation}
+which suggests that $\Omega_\mrm{r} \simeq 4.89 \times 10^{-5}$ if we assume $h = 0.7$ (see Lecture 14). Clearly, photons only make up a tiny fraction of the critical density. 
+
+In past lectures we have also shown that one can write
+\begin{align}
+\rho _\mrm{m} &= \rho_\mrm{r}(t_0)(1+z)^3, \\
+\rho _\mrm{r} &= \rho _\mrm{m}(t_0)(1+z)^4.
+\end{align}
+Comparing the two equations above, we find that $\rho_\mrm{m} \approx \rho _\mrm{r}$ happens when 
+\begin{equation}
+(1+z_\mrm{eq}) = \frac{\rho_\mrm{m} (t_0)}{\rho_\mrm{r}(t_0)} \sim 10^4.
+\end{equation}
+Here, $z_\mrm{eq}$ represents the epoch of matter-radiation equality. From the above, one might possibly be forgiven for assuming that radiation decoupled from matter at redshift z = 10,000, which, given Equation \ref{eq:Tvsa}, would correspond to a temperature of $T_\mrm{eq} = 30,000 \:\mrm{K}$.  However, this is incorrect.
+
+The recombination event happens long after matter-radiation equality. To see this, we note that the number density of photons relative to protons during recombination is very large
+\begin{equation}
+\frac{n_\mrm{r}}{n_\mrm{m}} \approx \frac{\rho _\mrm{r}/E_\mrm{r}}{\rho _\mrm{m} / m_\mrm{p}} = \frac{m_\mrm{p}}{E_\mrm{r}} \sim \frac{1\,\mrm{GeV}}{1\,\mrm{eV}} = 10^9,
+\end{equation}
+where we assume that $\rho _\mrm{r} = \rho _\mrm{m}$ during matter-radiation equality. The above calculation also relies on $E_\mrm{r} = (1+z_\mrm{eq})E_\mrm{r}(t_0) \sim 1\,\mrm{eV}$ and the assumption that the proton mass can be used to calculate the matter number densities during this era. Note that most normal matter should be in the form of neutrons and protons during this era.
+
+Since there are more photons than baryons, recombination does not take place when the effective temperature of the Universe corresponds to 13.6\,eV (the hydrogen ionization energy), but rather at 0.93\,eV. This can be understood from looking at the tail of the blackbody distribution for $T=3500$ (see Figure \ref{fig:blackbody}) and realizing that even though most of the photons live in the $\mathcal{O}(1 \:\mrm{eV}$) range, there is still a non-negligible amount of photons above the $13.6$-eV limit.
+
+It turns out that photons are unable to ionize hydrogen atoms at a redshift (see Section 10.3 in Liddle)
+\begin{equation}
+z_\mrm{dec} = 1090.
+\end{equation}
+After this time, the tail of the blackbody energy distribution provides insufficient number of ionizing photons. 
+
+\section{The early universe}
+
+The current age of the universe is 13.7 Billion years and we assume that the CMB photons last scattered when they had a characteristic temperature of $3000 \:\mrm{K}$.\footnote{Note that we said $3500 \:\mrm{K}$ in the previous section, but we are already doing a number of approximations and $3000 \:\mrm{K}$ gives more accurate end result.} Assuming the Universe is currently matter dominated (was a decent approximation until a few Billion years ago), and that we can write 
+\begin{equation}
+a(t) \propto t^{2/3}.
+\end{equation}
+Then, from Equation \ref{eq:Tvsa} we know that 
+\begin{align}
+T(t) &= \frac{T(t_0)}{a(t)} = T_0 (1+z), \nonumber \\
+& \Rightarrow a(t) = \frac{T_0}{T(t)} = \left( \frac{t}{t_0} \right)^{2/3}, \nonumber \\
+& \Rightarrow \frac{t_\mrm{dec}}{t_0} = \left( \frac{T_0}{T_\mrm{dec}} \right) ^{3/2} = \left( \frac{2.7 \:\mrm{K}}{3000  \:\mrm{K}} \right) ^{3/2}, \nonumber \\ 
+& \Rightarrow t_\mrm{dec} = t_0 \left( \frac{2.7 \:\mrm{K}}{3000  \:\mrm{K}} \right) ^{3/2} \approx 370,000 \:\mrm{years}.
+\end{align}
+In other words, the CMB photons started their journey when the Universe was roughly 370 thousand years old.
+
+
+
+As we've shown before, the Universe was radiation dominated before it became matter dominated at ($z > 10^4$). We can plug Equation \ref{eq:erad} into the 1st Friedmann equation to find 
+\begin{equation}
+H^2 = \left( \frac{\dot{a}}{a} \right) ^2 = \frac{8\pi G}{3} \rho _\mrm{r} = \frac{8\pi G}{3} \alpha T^4.
+\end{equation}
+In a radiation dominated universe we know that $a(t) \propto \sqrt{t}$ (see Lecture 13) and so 
+\begin{equation}
+H(t) = \frac{\dot{a}}{a} = \frac{1}{2t}.
+\end{equation}
+Thus 
+\begin{align}
+\left( \frac{1}{2t} \right) ^2 &= \frac{8\pi G}{3} \alpha T^4, \nonumber \\
+& \Rightarrow T = \left( \frac{3}{32 \pi G \alpha} \right)^{1/4} \frac{1}{\sqrt{t}}.
+\end{align}
+We can use this expression to show that the Universe had a temperature corresponding to $1 \:\mrm{MeV}$ at time $t = 1 \:\mrm{s}$. This is a useful number to remember, and it suggests that the characteristic energy of the Universe 1 second after the Big Bang was comparable to the binding energy of nuclei. 
+
+Figure \ref{fig:hot} walks you through some important events in the history of the Universe.
+
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.6\textwidth]{img/last_scattering_surface.png}
+    \caption[Last scattering surface]{The last scattering surface corresponds to the event where photons last scatter on charged particles in the primordial plasma. After this last scattering event, the CMB photons largely free stream through the universe until some of them are detected by our telescopes today. The photons have been redshifted significantly from the last scattering surface.}
+\label{fig:lssurface}
+\end{center}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/planck_tt.png}
+    \caption[The CMB power spectrum]{The CMB angular power spectrum as measured by the Planck satellite. The location and amplitude of the peaks and troughs can be linked to dark energy, dark matter, and baryonic energy densities while the location of the peaks can be used to constrain the geometry of the Universe (curvature).}
+\label{fig:tt_spectra}
+\end{center}
+\end{figure}
+
+\section{The last scattering surface}
+Prior to decoupling/recombination (we often use the terms interchangeably), photons and baryons are tightly coupled. Photons scatter off electrons and hydrogen atoms are quickly split apart
+\begin{align}
+\gamma + e^- &\longrightarrow \gamma + e^-, \\
+H + \gamma &\longleftrightarrow p + e^-.
+\end{align}
+As photon density and energy decreases, equilibrium is broken. Photons can no longer ionize hydrogen and the above relation can only go in one direction.
+
+Figure \ref{fig:lssurface} shows the so-called last scattering surface. The CMB photons at the last scattering surface had significantly more energy and the Universe was glowing bright in the visible during this epoch. As the Universe expanded, these photons have been redshifted by a factor of a thousand. The CMB photons are coming from all directions and their energy is quite uniform. However, sensitive telescopes can be used to detect variations in the temperature of the CMB photons that can be used to test various cosmological phenomena.
+
+The primary CMB anisotropies, which were first mapped by the COBE satellite, correspond to $\mathcal{O}(10-100) \:\mrm{\mu K}$ variations in the intensity of the CMB (see Figure \ref{fig:cmb_anisotropies}). Outside of the Galactic plane, these anisotropies dominate the sky signal over a wide range of angular scales. The angular power spectrum has now been measured by numerous experiments, including the \textit{Planck} satellite (see Figure~\ref{fig:tt_spectra}). Normally the power spectra are plotted as a function of $\ell$, the multipole moment. \footnote{The conversion to corresponding angular scales is found by the approximate expression $\theta \approx \pi / \ell \:[\mrm{rad}]$.}
+
+CMB temperature anisotropies, $T(\vhat{n}) = \delta T(\vhat{n})/T_0$, are naturally decomposed using spherical harmonics according to
+\begin{equation}
+T(\vhat{n}) = \sum _{\ell =1}^{\infty}\sum _{m=-\ell}^{\ell} a_{\ell m}^T Y_{\ell m} (\theta,\phi),
+\label{eq:deltaT}
+\end{equation}
+
+In Figure~\ref{fig:tt_spectra}, the acoustic oscillations can be seen as a series of peaks and throughs starting at degree angular scales, coinciding with $\ell \approx 100$. 
+
+\section{Big Bang Nucleosynthesis revisited}
+
+In Lecture 11 we discussed relative abundances of neutrons and protons and how they get locked in at energies of around $1 \:\mrm{MeV}$ roughly 1 sec after the Big Bang. 
+\begin{equation}
+\frac{N_n}{N_p} \simeq \exp \left( - \frac{1.3 \:\mrm{MeV}}{0.8 \:\mrm{MeV}} \right) \simeq \frac{1}{5}. 
+\end{equation}
+In the first few minutes, light isotopes such as deuterium, helium-3, helium-4, and lithium are produced. However, the characteristic energy of the Universe is too high for these isotopes to last long; they almost immediately disintegrate back into neutrons and protons. It is not until until the characteristic temperature of the Universe falls down to about $0.06 \:\mrm{MeV}$ that these isotopes can start to bind permanently. This corresponds to time $t_\mrm{nuc} = 340 \:\mrm{s}$. It is an interesting coincidence that $t_\mrm{nuc}$ does not fall too far from the half-life time of neutrons in isolation, $t_\mrm{half} = 610 \:\mrm{s}$. If the half-life time of neutrons had been much shorter, the neutrons would have all decayed into protons and the Universe would have been left with only hydrogen atoms.
+
+The \textit{anthropic principle} in cosmology roughly states that: the Universe must be found to possess those properties necessary for the existence of observers. That a universe with physical laws that are unable sustain intelligent life would not have individuals mulling over its physical laws (like we are today). There are various forms of these arguments, often referred to as the weak and strong anthropic principles, but the basic idea is the same. 
+
+It is interesting to note that a universe with a cosmological constant several orders of magnitude greater than what is suggested by observations of type Ia supernovae would immediately accelerate away into oblivion and thermal death. Similarly, minor tweaks of physical constants, such as the constants that govern weak and strong interactions, would produce conditions that are unable to harbor life.
+
+We now know that roughly 24\% of the baryonic matter in the Universe is in the form of helium with the rest in hydrogen and only trace amounts of helium-3, deuterium, and lithium. Knowing the temperature of the CMB, and therefore the photon number density in the Universe, the theory of big bang nucleosynthesis is actually able to predict the mass densities of different isotopes (see Figure 12.1 in Liddle). Remarkably, these mass densities agree incredibly well with current constraints on deuterium abundance which are obtained from absorption features from spectra of quasars. These observations put really tight constraints on the amount of baryonic matter in the Universe. Given that the Universe is observed to be flat, we need to invoke other forms of energy such dark matter and dark energy.
+
+\begin{note}
+One half of the 2019 Nobel prize in physics went to James E.\ Peebles. He has made numerous contributions to theoretical cosmology. One of his major achievements, is developing the modern version of big bang nucleosynthesis. Before Peebles, many thought that big bang nucleosynthesis could generate even heavier isotopes such as carbon. We now know that all isotopes heavier than lithium are produced in stars, in particular during supernovae events. 
+\end{note}
+
+
+
+
+
+\begingroup
+%\bibliographystyle{unsrt85}
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{unsrtnat}
+%\bibliographystyle{science}
+%\setlength{\bibitemsep}{-5pt}
+\linespread{0.5}\selectfont
+\bibliography{lecture15}
+%{\bibliography{snsb2019}}
+\endgroup
+
+\end{document}
+%%
+%% EOF
