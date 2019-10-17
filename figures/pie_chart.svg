@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="761.177px" height="825.882px" viewBox="0 0 761.177 825.882" enable-background="new 0 0 761.177 825.882"
+	 xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<g>
+				<polygon fill="#C49A6C" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" points="390.648,461.433 384.743,123.126 
+					390.648,123.075 				"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#A97C50" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M390.648,461.433L280.49,141.509
+					c35.161-12.107,67.072-17.733,104.253-18.382L390.648,461.433z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#603913" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M390.648,461.433L70.724,571.592
+					C9.946,395.079,103.977,202.287,280.49,141.509L390.648,461.433z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#3C2415" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M390.648,461.433V123.075
+					c186.87,0,338.358,151.488,338.358,338.358S577.519,799.792,390.648,799.792c-149.309,0-271.314-87.025-319.924-228.199
+					L390.648,461.433z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 322.9409 583.8237)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">Dark energy</text>
+<text transform="matrix(1 0 0 1 322.9409 655.8237)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">Ω</text>
+<text transform="matrix(0.583 0 0 0.583 365.2397 670.8042)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">Λ</text>
+<text transform="matrix(1 0 0 1 386.5425 650.8237)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">~ 0.7</text>
+<text transform="matrix(1 0 0 1 109.9409 320.7056)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">Dark </text>
+<text transform="matrix(1 0 0 1 109.9409 392.7056)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">matter</text>
+<text transform="matrix(1 0 0 1 109.9409 464.7056)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">Ω</text>
+<text transform="matrix(0.583 0 0 0.583 152.2397 479.686)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">c</text>
+<text transform="matrix(1 0 0 1 167.9106 459.7056)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="60">~ 0.25</text>
+<line stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="351.441" y1="184.824" x2="158.108" y2="146.824"/>
+<text transform="matrix(1 0 0 1 78.333 62.9512)" font-family="'MyriadPro-Regular'" font-size="60">Baryons</text>
+<text transform="matrix(1 0 0 1 78.333 134.9512)" font-family="'MyriadPro-Regular'" font-size="60">Ω</text>
+<text transform="matrix(0.583 0 0 0.583 120.6318 149.9312)" font-family="'MyriadPro-Regular'" font-size="60">b</text>
+<text transform="matrix(1 0 0 1 140.5352 129.9512)" font-family="'MyriadPro-Regular'" font-size="60">~ 0.05</text>
+<text transform="matrix(1 0 0 1 493.4404 57.1567)" font-family="'MyriadPro-Regular'" font-size="60">Photons</text>
+<text transform="matrix(1 0 0 1 493.4404 129.1567)" font-family="'MyriadPro-Regular'" font-size="60">Ω</text>
+<text transform="matrix(0.583 0 0 0.583 535.7393 144.1367)" font-family="'MyriadPro-Regular'" font-size="60">r</text>
+<text transform="matrix(1 0 0 1 547.1777 124.1567)" font-family="'MyriadPro-Regular'" font-size="60">~ 1e-5</text>
+<line stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="387.941" y1="169.324" x2="484.941" y2="112.824"/>
+</svg>

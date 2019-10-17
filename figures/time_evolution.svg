@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1462.025px" height="794.937px" viewBox="0 0 1462.025 794.937" enable-background="new 0 0 1462.025 794.937"
+	 xml:space="preserve">
+<g>
+	<g>
+		<polyline fill="none" stroke="#8B5E3C" stroke-width="11" stroke-miterlimit="10" points="136.709,43.465 136.709,696.253 
+			1357.539,696.253 		"/>
+		<g>
+			<polygon fill="#8B5E3C" points="136.709,4.632 114.349,59.353 136.709,46.368 159.063,59.353 			"/>
+		</g>
+		<g>
+			<polygon fill="#8B5E3C" points="1396.372,696.253 1341.651,718.612 1354.635,696.253 1341.651,673.898 			"/>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="191.139" y1="207.304" x2="773.417" y2="323.76"/>
+<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="773.417" y1="323.76" x2="1305.063" y2="529.582"/>
+<g>
+	<g>
+		<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="200" y1="544.646" x2="202" y2="544.646"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="4.0107,4.0107" x1="206.011" y1="544.646" x2="212.027" y2="544.646"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="4.0107,4.0107,4.0107,4.0107" x1="214.032" y1="544.646" x2="1351.057" y2="544.646"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="1353.063" y1="544.646" x2="1355.063" y2="544.646"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 8.8535 118.7241)" font-family="'MyriadPro-Regular'" font-size="60">ln(ρ)</text>
+<text transform="matrix(1 0 0 1 1358.1313 773.7881)" font-family="'MyriadPro-Regular'" font-size="60">ln(t)</text>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="775.532" y1="24.684" x2="775.532" y2="30.684"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="11.9181,11.9181" x1="775.532" y1="42.602" x2="775.531" y2="680.218"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="775.531" y1="686.177" x2="775.531" y2="692.177"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 793.5244 663.9658)" font-family="'MyriadPro-Regular'" font-size="60">5000 yrs</text>
+<text transform="matrix(1 0 0 1 377.5752 92.0029)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="60">Radiation </tspan><tspan x="0" y="72" font-family="'MyriadPro-Regular'" font-size="60">dominated</tspan></text>
+<text transform="matrix(1 0 0 1 963.2466 92.0029)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="60">Matter</tspan><tspan x="0" y="72" font-family="'MyriadPro-Regular'" font-size="60">dominated</tspan></text>
+<text transform="matrix(0.9913 0.1317 -0.1317 0.9913 403.9595 325.6475)" font-family="'MyriadPro-Regular'" font-size="60">ρ</text>
+<text transform="matrix(0.5779 0.0768 -0.0768 0.5779 435.4722 344.9463)" font-family="'MyriadPro-Regular'" font-size="60">m </text>
+<text transform="matrix(0.9913 0.1317 -0.1317 0.9913 473.0562 339.8701)" font-family="'MyriadPro-Regular'" font-size="60">~ a</text>
+<text transform="matrix(0.5779 0.0768 -0.0768 0.5779 552.4116 330.2549)" font-family="'MyriadPro-Regular'" font-size="60">-3 </text>
+<text transform="matrix(0.9913 0.1317 -0.1317 0.9913 585.5645 354.8135)" font-family="'MyriadPro-Regular'" font-size="60">~ t</text>
+<text transform="matrix(0.5779 0.0768 -0.0768 0.5779 655.939 344.0068)" font-family="'MyriadPro-Regular'" font-size="60">-3/2</text>
+<text transform="matrix(0.9736 0.2282 -0.2282 0.9736 433.4771 231.2773)" font-family="'MyriadPro-Regular'" font-size="60">ρ</text>
+<text transform="matrix(0.5676 0.1331 -0.1331 0.5676 462.9463 253.5713)" font-family="'MyriadPro-Regular'" font-size="60">r </text>
+<text transform="matrix(0.9736 0.2282 -0.2282 0.9736 483.5801 248.1572)" font-family="'MyriadPro-Regular'" font-size="60">~ a</text>
+<text transform="matrix(0.5676 0.1331 -0.1331 0.5676 563.4961 246.3701)" font-family="'MyriadPro-Regular'" font-size="60">-4 </text>
+<text transform="matrix(0.9736 0.2282 -0.2282 0.9736 594.0815 274.0605)" font-family="'MyriadPro-Regular'" font-size="60">~ t</text>
+<text transform="matrix(0.5676 0.1331 -0.1331 0.5676 665.1772 270.2051)" font-family="'MyriadPro-Regular'" font-size="60">-2</text>
+<text transform="matrix(0.9677 0.252 -0.252 0.9677 1005.7856 335.8115)" font-family="'MyriadPro-Regular'" font-size="60">ρ</text>
+<text transform="matrix(0.5642 0.1469 -0.1469 0.5642 1034.6987 358.8223)" font-family="'MyriadPro-Regular'" font-size="60">m </text>
+<text transform="matrix(0.9677 0.252 -0.252 0.9677 1072.6216 358.3857)" font-family="'MyriadPro-Regular'" font-size="60">~ a</text>
+<text transform="matrix(0.5642 0.1469 -0.1469 0.5642 1152.5571 358.5586)" font-family="'MyriadPro-Regular'" font-size="60">-3 </text>
+<text transform="matrix(0.9677 0.252 -0.252 0.9677 1182.4546 386.9912)" font-family="'MyriadPro-Regular'" font-size="60">~ t</text>
+<text transform="matrix(0.5642 0.1469 -0.1469 0.5642 1253.6235 384.8809)" font-family="'MyriadPro-Regular'" font-size="60">-2</text>
+<text transform="matrix(0.9119 0.4103 -0.4103 0.9119 945.9321 430.2656)" font-family="'MyriadPro-Regular'" font-size="60">ρ</text>
+<text transform="matrix(0.5317 0.2392 -0.2392 0.5317 970.5903 457.7852)" font-family="'MyriadPro-Regular'" font-size="60">r </text>
+<text transform="matrix(0.9119 0.4103 -0.4103 0.9119 991.8784 456.4199)" font-family="'MyriadPro-Regular'" font-size="60">~ a</text>
+<text transform="matrix(0.5317 0.2392 -0.2392 0.5317 1070.6606 469.9551)" font-family="'MyriadPro-Regular'" font-size="60">-4 </text>
+<text transform="matrix(0.9119 0.4103 -0.4103 0.9119 1095.3823 502.9863)" font-family="'MyriadPro-Regular'" font-size="60">~ t</text>
+<text transform="matrix(0.5317 0.2392 -0.2392 0.5317 1165.9019 512.8047)" font-family="'MyriadPro-Regular'" font-size="60">-8/3</text>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="191.139" y1="252.367" x2="195.109" y2="252.854"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="8.0928,2.0232" x1="197.118" y1="253.1" x2="206.154" y2="254.208"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="8.0928,2.0232,8.0928,2.0232" x1="207.159" y1="254.331" x2="768.443" y2="323.149"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="769.447" y1="323.272" x2="773.417" y2="323.76"/>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="773.417" y1="323.76" x2="777.329" y2="324.599"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="7.9685,1.9921" x1="779.276" y1="325.017" x2="788.042" y2="326.896"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="7.9685,1.9921,7.9685,1.9921" x1="789.016" y1="327.104" x2="1294.482" y2="435.497"/>
+		
+			<line fill="none" stroke="#C49A6C" stroke-width="4" stroke-miterlimit="10" x1="1295.456" y1="435.706" x2="1299.367" y2="436.545"/>
+	</g>
+</g>
+<text transform="matrix(1 6.300000e-004 -6.300000e-004 1 416.4253 514.1592)" font-family="'MyriadPro-Regular'" font-size="60">ρ</text>
+<text transform="matrix(0.583 3.672900e-004 -3.672900e-004 0.583 450.1953 529.1602)" font-family="'MyriadPro-Regular'" font-size="60">Λ </text>
+<text transform="matrix(1 6.300000e-004 -6.300000e-004 1 478.9189 519.1982)" font-family="'MyriadPro-Regular'" font-size="60"> constant</text>
+<text transform="matrix(1 6.300000e-004 -6.300000e-004 1 403.9634 600.8984)" font-family="'MyriadPro-Regular'" font-size="60">(Dark energy)</text>
+</svg>

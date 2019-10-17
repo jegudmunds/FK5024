@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="682.279px" height="693.038px" viewBox="0 0 682.279 693.038" enable-background="new 0 0 682.279 693.038"
+	 xml:space="preserve">
+<circle fill="none" stroke="#754C29" stroke-width="4" stroke-miterlimit="10" cx="326.499" cy="343.139" r="300"/>
+<circle fill="none" stroke="#754C29" stroke-width="4" stroke-miterlimit="10" cx="567.251" cy="127.348" r="22.785"/>
+<text transform="matrix(1 0 0 1 610.0562 170.4458)" font-family="'MyriadPro-Regular'" font-size="60">m</text>
+<line stroke="#754C29" stroke-width="4" stroke-miterlimit="10" x1="326.499" y1="343.139" x2="567.251" y2="127.348"/>
+<text transform="matrix(1 0 0 1 381.4604 333.4961)" font-family="'MyriadPro-Regular'" font-size="60">r(t)</text>
+<g>
+	<line x1="577.215" y1="118.987" x2="613.924" y2="86.708"/>
+	<g>
+		<line fill="none" stroke="#754C29" stroke-width="4" stroke-miterlimit="10" x1="577.215" y1="118.987" x2="603.32" y2="96.033"/>
+		<g>
+			<polygon fill="#754C29" points="613.924,86.708 604.35,105.954 602.527,96.73 593.614,93.744 			"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 567.2515 57.5469)" font-family="'MyriadPro-Regular'" font-size="60">v(t)</text>
+<text transform="matrix(1 0 0 1 185.0552 190.0054)" font-family="'MyriadPro-Regular'" font-size="60">ρ(t)</text>
+<text transform="matrix(1 0 0 1 130.1948 496.7876)" font-family="'MyriadPro-Regular'" font-size="60">M</text>
+</svg>
