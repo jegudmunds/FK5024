@@ -1,0 +1,371 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatexmk
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{redefine-sections}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{bibspacing}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{empheq}
+
+\newcommand{\boxedeq}[2]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align}\label{#1}#2\end{empheq}}
+\newcommand{\coloredeq}[2]{\begin{empheq}[box=\colorbox{lightgreen}]{align}\label{#1}#2\end{empheq}}
+
+\makeatletter
+
+% Redefine maketitle
+%
+\def\maketitle{%
+\par\textbf{\@title}%
+\par{\@author}%
+\par}
+
+% Redefine \em and \emph
+%
+\DeclareRobustCommand{\em}{%
+  \@nomath\em \if b\expandafter\@car\f@series\@nil
+  \normalfont \else \bfseries \fi}
+
+\makeatother
+
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\lhead{\textsc{FK5024}}
+\rhead{\textsc{Lecture 16}}
+\pagestyle{fancy}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5em}
+\renewcommand{\familydefault}{\sfdefault}
+
+%  frequent science terms
+\newcommand{\lcdm}{$\mathrm{\Lambda CDM}$ }
+\newcommand{\lcdmn}{$\mathrm{\Lambda CDM}$}
+\newcommand{\etal}{et al.\@ }
+\newcommand{\etaln}{et al.\@}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+
+%% From Header.tex, see tmp/
+%% http://www.dfcd.net/articles/latex/latex.html
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\vv}[1]{\ensuremath{\vec{\mathbf{#1}}}} % for vectors2
+\newcommand{\vvv}[1]{\ensuremath{{\bm{#1}}}} % for vectors2
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}}
+\newcommand{\ellp}{\ell '}
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left\vert #1 \right\vert} % for absolute value
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}{d}
+\newcommand{\dder}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\ddder}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newcommand{\vhat}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for vectors
+\newcommand{\vvhat}[1]{\ensuremath{\bm{\hat{#1}}}} % for vectors
+
+\usepackage{xcolor}
+\definecolor{linkc}{RGB}{43,116,165}
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mybrown}{RGB}{128,64,0}
+\definecolor{linkc}{RGB}{31,93,135}
+\newcommand{\linkc}[1]{\textcolor{linkc}{#1}}
+\newcommand{\linkcb}[1]{\textbf{\textcolor{linkc}{#1}}}
+\usepackage{tcolorbox}
+
+\mathchardef\mhyphen="2D
+
+\tcbuselibrary{theorems}
+\newtcolorbox{warning}{colback=mybrown!5!white,colframe=mybrown!45!white, title = Warning}
+
+\newtcolorbox{attention}{colback=mybrown!5!white,colframe=mybrown!45!white}
+
+\theoremstyle{plain}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{definitionT}{Note}%[section]
+\usepackage[framemethod=default]{mdframed}
+%\newmdenv[backgroundcolor=red]{tBox}
+%\newmdenv[leftmargin=1cm,linecolor=blue]{aBox}
+%\RequirePackage[framemethod=default]{mdframed}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+
+\newmdenv[skipabove=12pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=mybrown,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=25pt,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}
+
+\newenvironment{note}{
+\begin{dBox}
+\begin{definitionT}}
+{\end{definitionT}
+\end{dBox}}
+
+\begin{document}
+\fontsize{5mm}{6mm}\selectfont\thispagestyle{empty}
+
+\thispagestyle{empty}
+\begin{center}
+\textsc{Lecture 16}\\[1.5ex]
+{\Huge FK5024: Particle and Nuclear Physics, Astrophysics and Cosmology\\}
+\vspace{3mm}
+{\large PART III: Astrophysics and Cosmology \\}
+%\vspace{3mm}
+Jon E. Gudmundsson\footnote{\href{http://jon.fysik.su.se}{\linkc{http://jon.fysik.su.se}}} \\
+%\vspace{-3mm}
+\linkc{jon@fysik.su.se}
+\end{center}
+Today we will focus on a few fundamental problems with the classical Big Bang model and discuss how the theory of cosmic inflation can be used to resolve those problems. The first section is extra material that is useful for constructing a full mental picture of the history of the Universe, but there wont be direct question on this topic on the exam. For those that are interested, section A5 in Liddle will complement this section nicely.
+\begin{attention}
+This lecture should be supplemented by Liddle: 4.4, 4.5, 13.1 - 13.3.1
+\end{attention}
+
+\section{Baryon acoustic oscillations [not on exam]}
+Prior to recombination, interactions between radiation and matter left an imprint on the large-scale distribution of matter across the universe. The phenomenon is referred to as baryon acoustic oscillations (BAOs). Baryons and dark matter couple gravitationally, yet dark matter lacks photon interactions and, therefore, does not feel radiation pressure in overdense regions. Conversely, baryons are pushed outwards from initial overdensities by this photon pressure. As this happens, the Universe is expanding and eventually the interaction subsides during decoupling/recombination. Baryons are suddenly left behind as the CMB photons shed their superluminal counterparts. Most of the baryons fall back towards the overdense regions while a fraction remains in a shell as an echo from the former era. 
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/slices_3deg_big_bw.png}
+    \caption[Results from the 2dF Galaxy Redshift Survey]{Results from the 2dF Galaxy Redshift Survey showing the distribution of galaxies projected onto the plane. Reproduced with the permission from the 2dF Galaxy Redshift Team \cite{Colless2001,Colless2014}}
+\label{fig:2dfs}
+\end{center}
+\end{figure}
+
+The Copernican principle states that we, as observers of the Universe, do not have the benefit of a privileged vantage point. As modern sky surveys suggest that our local universe is isotropic and homogenous over the largest scales we conclude that so is the Universe as a whole. Upon closer inspection we notice, however, that galaxies tend to clump together in halos with great lifeless voids in between. Figure~\ref{fig:2dfs} shows the distribution of approximately a hundred thousand galaxies across two patches on the sky as measured by the 2dF Galaxy Redshift Survey \cite{Colless2001}. Similar distributions can only be seen in simulations that include a cold dark matter component that dominates baryonic energy densities at the ratio of six to one \cite{Springel2005}. This is just one of many observations that support the idea of dark matter.
+
+%\section{The geometry of the Universe [Not on exam]}
+
+Observations of acoustic oscillations in the power spectrum of the cosmic microwave background anisotropies allow us to constrain the geometry of the Universe. To see this, it helps to think about the time-evolution of a collection of standard (baryonic) matter particles, dark matter particles, and photons.
+
+Dark matter is uncharged and only interacts through gravitation. Baryonic matter on the other hand feels the pressure from photons in addition to the gravity. This pressure is counter to the gravitational force that tries pull all objects towards the center of the mass distribution. Prior to decoupling, matter and radiation interacted frequently and pressure (sound) waves travelled at the almost the speed of light in vacuum; turns out that $v_\mrm{s} = c/\sqrt{3}$ is a good approximation. 
+
+Let us now imagine that the radius of our spherical mass distribution corresponds to the distance that particles moving at the velocity $v_\mrm{s} = c/\sqrt{3}$ can traverse over the age of the Universe. The maximum distance traversed during a gravitational collapse is $v_\mrm{s} t_\mrm{dec}$. Assuming that we understand the thermodynamics of primordial plasma in an expanding universe, we can calculate this length scale quite precisely. Knowing this length scale and the corresponding redshift, we can now use that to constrain the geometry of the Universe. 
+
+In a flat geometry, the angle that an object subtends on the sky is simply
+\begin{equation}
+\theta = p / d,
+\label{eq:angle}
+\end{equation}
+where $p$ is the physical size of the object and $d$ is the distance to the object. In a closed universe, that angle will be larger than what's predicted by Equation \ref{eq:angle} (see Figure \ref{fig:geometry}). Conversely, in an open universe, the angle will be smaller.
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/geometry.png}
+    \caption[Geometry of the Universe]{The geometry of the Universe can be estimated by measuring angles subtended by hot and cold spots in the anisotropies of the cosmic microwave background. Cases a), b), and c) correspond to a closed, flat, and open universe, respectively. Figure taken from a document prepared by the Royal Swedish Academy of Sciences to accompany the 2019 Nobel prize announcement.}
+\label{fig:geometry}
+\end{center}
+\end{figure}
+
+
+\section{Flatness Problem}
+We observe that the curvature of the Universe in the current epoch is quite close to being flat ($k=0$). This suggests that 
+\begin{equation}
+\rho (t_0) \simeq \rho _\mrm{c}(t_0) = \frac{3H_0^{2}}{8\pi G}.
+\end{equation}
+We have also shown that one can rewrite the 1st Friedmann equation to get 
+\begin{equation}
+| \Omega _\mrm{tot}(t) - 1| = \frac{k}{a^{2}H^{2}},
+\end{equation}
+where 
+\begin{equation}
+\Omega (t) = \frac{\rho (t)}{\rho _\mrm{c}(t)}.
+\end{equation}
+In a matter and radiation dominated universe we can show that 
+\begin{align}
+a^{2} H^{2} \propto t^{-1} \quad &\mrm{(Radiation\: dominated)}, \\
+a^{2} H^{2} \propto t^{-2/3} \quad &\mrm{(Matter\: dominated)}.
+\end{align}
+Which gives 
+\begin{align}
+&| \Omega _\mrm{tot} - 1| \propto t \quad \mrm{(Radiation\: dominated)}, \\
+&| \Omega _\mrm{tot} - 1| \propto t^{2/3}  \quad \mrm{(Matter\: dominated)}.
+\end{align}
+In both cases, the difference between $\Omega _\mrm{tot}$ and 1 grows with time. A flat geometry is therefore unstable. In order to have zero curvature at all times we need to balance the total energy density of the Universe to be perfectly equal to the critical energy density. This calls for careful tuning.
+
+Another way to see this is to remember that the curvature term in the 1st Friedmann equation, $k/a^{2}$, changes more slowly with both matter and radiation which scale like $1/a^{3}$ and $1/a^{4}$, respectively. Therefore, if the Universe is not completely dominated by the curvature term today, the curvature must have started at a much lower value than contributions from radiation and matter in earlier epochs of the history of the Universe.
+
+The tuning requirement can be seen from noting that current limits suggest $|\Omega _\mrm{tot} - 1| \leq 0.01$ today. Therefore, at earlier times:
+\vspace{-5mm}
+\begin{itemize}
+\item At decoupling ($t \simeq 10^{13} \:\mrm{s}$) we have $|\Omega _\mrm{tot} - 1| \leq 10^{-5}$
+\item At matter-radiation equality ($t \simeq 10^{12} \:\mrm{s}$) we have $|\Omega _\mrm{tot} - 1| \leq 10^{-6}$
+\item During nucleosynthesis ($t \simeq 1 \:\mrm{s}$) we have $|\Omega _\mrm{tot} - 1| \leq 10^{-18}$
+\item Scale of electroweak symmetry breaking ($t \simeq 1^{-12} \:\: \mrm{s}$) we have $|\Omega _\mrm{tot} - 1| \leq 10^{-30}$
+\end{itemize}
+
+General relativity admits any value of the curvature term and there is no particular reason to assume $|\Omega _\mrm{tot} - 1| = 0$ in the current epoch.
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.6\textwidth]{img/particle_horizon.png}
+    \caption[Particle horizons.]{Particle horizons at the last scattering surface. The finite speed of light and the finite age of the Universe mean that during decoupling, the so-called particle horizon was much smaller than it is today. Consequently, the sky is filled with causally disconnected regions. How is it possible that they all agreed on the temperature with so high precision?}
+\label{fig:particle_horizons}
+\end{center}
+\end{figure}
+
+\section{Horizon problem}
+
+When we look at the cosmic microwave background (CMB), we are looking at an image of the Universe from a redshift of $z \approx 1090$. We can use the finite speed of light and the assumptions that $t_\mrm{dec} = 380,000 \:\mrm{yrs}$ to calculate the radius of causal contact, the so-called particle horizon, at redshift $z=1090$. It turns out that this radius projected perpendicular to the line of sight amounts to about $1 \:\mrm{deg}$ on the sky (see Figure \ref{fig:particle_horizons}). In other words, the last scattering surface as it appears to us consists of thousands of causally disconnected regions. What is it then that allowed these regions to coordinate and agree on their temperature to ten parts per million?
+
+This is known as the horizon problem.
+
+\textbf{Definition:} The \textit{particle horizon} is the physical distance that a particle (light or anything else) moving at the speed of light could have traversed from the beginning of time to the current epoch. It reflects a spherical causal horizon. Anything outside of that horizon can not have communicated with an observer at the center of this sphere. Clearly, the particle horizon changes with time. 
+
+\section{Cosmic Inflation}
+
+The theory of cosmic inflation was originally developed by Alan Guth in the 1980's. His motivation for that work was to study magnetic monopoles.\footnote{Various exotic particles, including magnetic monopoles, are predicted by high energy theories. In the current cosmological model, there is no way to get rid of those exotic particles in the present day universe. As far as we can tell, the relative abundance of magnetic monopoles and some of those exotic particles must be tiny. Some mechanism is required to limit these number densities.} He quickly realized however, that the inflationary mechanism could help explain some of the other peculiarities that we have described above.\footnote{I highly recommend Alan Guth's historical accounting of his own work as described in the popular science book, the Inflationary Universe \cite{Guth1997}.}
+
+The basic idea behind cosmic inflation is that the infant universe undergoes a period of accelerated expansion which is characterized by $\ddot{a} > 0$. This is in fact the requirement for cosmic inflation:
+\begin{equation}
+\ddot{a} > 0 \Leftrightarrow \mrm{Inflation}
+\end{equation}
+
+This quick expansion of space magnifies microscopic volumes and washes out spatial curvature. As part of this process, regions that were once in causal contact are expanded away from each other at superluminal speeds so that they now appear to be causally disconnected. 
+
+The evolution of the scale factor in a universe that is dominated by a cosmological constant can be seen from the 1st Friedman equation
+\begin{equation}
+H^{2} = \left( \frac{\dot{a}}{a} \right) ^{2} = \frac{8 \pi G}{3}(\rho _\mrm{m} + \rho _\mrm{r}) + \frac{\Lambda}{3} \simeq \frac{\Lambda}{3}.
+\end{equation}
+From this we can see that
+\begin{equation}
+\frac{\dot{a}}{a} = \sqrt{ \frac{\Lambda}{3} },
+\end{equation}
+which has an obvious solution
+\begin{equation}
+a(t) \propto e ^{\sqrt{\Lambda/3} t} = e^{Ht}.
+\label{eq:eHt}
+\end{equation}
+If the energy density of the Universe is dominated by a cosmological constant, we will have exponential growth of the scale factor. 
+
+From looking at the acceleration equation (2nd Friedmann equation) 
+\begin{equation}
+\frac{\ddot{a}}{a} = - \frac{4\pi G}{3}(\rho + 3p),
+\end{equation}
+we can also see that $\ddot{a} > 0$ forces
+\begin{equation}
+(\rho + 3p) < 0 \Rightarrow p < - \rho/3.
+\end{equation}
+We need negative pressure that exceeds a certain threshold to drive accelerated expansion.
+
+\subsection{Solving the flatness problem}
+The 1st Friedmann equation can be written in another way
+\begin{equation}
+| \Omega _\mrm{tot}(t) - 1| = \frac{|k|}{a^{2}H^{2}}.
+\end{equation}
+If $\ddot{a} > 0$ we have 
+\begin{equation}
+\frac{\mrm{d}}{\mrm{d}t} (\dot{a}) > 0 \Rightarrow \frac{\mrm{d}}{\mrm{d}t} (a H) > 0.
+\end{equation}
+In other words, the requirement for cosmic inflation is exactly what pushes the total energy density towards the critical energy density; this results in a flat universe (zero curvature).
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=1.0\textwidth]{img/inflation.png}
+    \caption[Inflation.]{Prior to inflation, the region contained within the dashed circle was in causal contact. Particles and light are able to interact and come to a thermal equilibrium across this region of space. Inflation causes superluminal (faster than speed of light) expansion of space. At the end of inflation, the physical separation across the grid cell diagonal shown on the right hand side is equal to the distance that light could have travelled over the age of the Universe. The cell is now causally disconnected from other cells. Furthermore, assuming that the sphere shown on the left represents a 2-dimensional analog of the Universe, you can also convince yourself that this expansion of space has reduced curvature (made the Universe more flat).}
+\label{fig:inflation}
+\end{center}
+\end{figure}
+
+\subsection{Solving the horizon problem}
+The qualitative solution to the horizon problem can be seen from looking at Figure \ref{fig:inflation}. The expansion of space means that regions that were once in causal contact are no longer connected. This can only happen if the expansion of space outpaces the rate at which your observable universe grows with time. Looking at Equation \ref{eq:eHt}, one can see that with sufficient time, $t$, or sufficiently large value of $H$, the expansion of comoving space will outpace the speed of light.
+
+Starting with 
+\begin{equation}
+a(t) = e^{Ht}
+\end{equation}
+we know that physical distances scale are related to comoving distance scales according to
+\begin{equation}
+r(t) = a(t) \chi = e^{Ht} \chi.
+\end{equation}
+The corresponding velocity is simply
+\begin{equation}
+v(t) = \frac{\mrm{d} }{\mrm{d} t} r(t) = \dot{a} (t) \chi = H e^{Ht} \chi.
+\end{equation}
+We have superluminal expansion of space as long as $H e^{Ht} \chi > c$, where $c$ is the speed of light in vacuum.
+
+\textbf{Question:} What happens if the current day Universe is completely dominated by dark energy and we observe indefinite accelerated expansion? How long would it take a comoving distance of $1\:\mrm{m}$ to move away from us at velocity $c = 2.998 \times 10^{8} \:\mrm{m/s}$? 
+
+\textbf{Answer:} Assuming that $H = H_0 \simeq 70 \:\mrm{km/s/Mpc}$, we now have
+\begin{equation}
+H_0 e^{H_0 (t - t_0)} \times 1 \:\mrm{m} = c
+\end{equation}
+This is a transcendental equation, but we can use a calculator to see that an approximate answer is $\Delta t \equiv t - t_0 =  2.6615 \times 10^{19} \: \mrm{s}$, which corresponds roughly to 848~billion years. That's 61 times the current age of the Universe.
+
+\subsection{Ending inflation}
+At some point, however, this dramatic expansion has to slow down to the more moderate rate that allowed for structure formation. A generic model of inflation is generally followed by a so-called reheating event, during which different particle species are created in thermal equilibrium. The physics of reheating are largely opaque to us and the physics of inflation and reheating represent an active research area.
+
+\begin{note}
+\textit{It would seem that cosmic inflation and dark energy could be described by the same equation of state. What is the difference between cosmic inflation and a universe that is dominated by dark energy (cosmic constant)? }
+
+The difference can be seen from looking at energy scales required to drive the expansion of the Universe during the current epoch versus the energy density in the infant Universe. For typical models of the early Universe, the energy scales required to make significant contribution to the total energy density are of order $10^{14} \:\mrm{GeV}$ or even greater. This suggests that whatever physics is responsible for dark energy today is likely different from the physics driving cosmic inflation. 
+\end{note}
+
+\section{The fate of the Universe}
+So what is the ultimate fate of the Universe? One can argue that since we don't understand the physics of dark matter and dark energy there is no way for us to extrapolate infinitely far into the future. However, taken current observations at face value and plugging them into the Friedmann equation we can arrive at results that are similar to Figure \ref{fig:fate}. 
+
+Given $\Omega _\Lambda \approx 0.7$ and $\Omega _\mrm{m} \approx 0.3$, it would appear that we live in a universe that will expand forever. The implications are universe that will end in thermal death. 
+
+\begin{figure}[t]
+\begin{center}
+    \includegraphics*[angle=0,width=0.8\textwidth]{img/fate.png}
+    \caption[Fate of the Universe.]{Constraints on dark energy and matter energy densities together with the Friedmann equations allow us to predict the fate of the Universe. Independent cosmological observations combine to reduce viable parameter space. Figure from the Supernova Cosmology Project.}
+\label{fig:fate}
+\end{center}
+\end{figure}
+
+
+\begingroup
+\bibliographystyle{unsrtnat}
+\linespread{0.5}\selectfont
+\bibliography{lecture16}
+\endgroup
+
+\end{document}
