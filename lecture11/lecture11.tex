@@ -319,45 +319,17 @@ N_p / (dN_p / dt) \approx 2.4 \times 10^{18} \: \mrm{s} \approx 8 \times 10^{10}
 \end{equation}
 to convert all of its hydrogen into helium. A more accurate estimate suggests that our sun should live for about 10 billion years ($10^{10}$).
 
-\section{Big bang nucleosynthesis}
-Big bang nucleosynthesis (BBN) is a concept that is commonly brought up in both astrophysical and cosmological context. It describes the physics of element production during the early stages in the history of our universe. For those who are interested, Steven Weinberg wrote a famous book called \textit{The First Three Minutes}~\cite{Weinberg1993}.
+\section{White dwarfs, neutron stars, and supernovae}
+\textit{This section expands on discussion found in Section 9.1.4 in Martin's textbook}
 
-Chapter 12 in Liddle discusses light element production, in particular hydrogen and helium, during the first few minutes in the history of our big bang cosmological model. Some concepts to take away from this chapter include:
-\begin{itemize}
-\item BBN is responsible for the production of hydrogen, helium, deuterium, and even lithium; there is a primordial abundance that we can measure today
-\item Nucleosynthesis is happening at temperatures corresponding to $1 \:\mrm{MeV}$
-\item Nucleosynthesis happens during the first few minutes in the history of our universe
-\item At the end of this process, we are left with approximately 75\% hydrogen, and 25\% helium
-\item A tiny mass fraction in the form of deuterium, helium-3, and lithium (lithium-6 and lithium-7 are both stable)
-%\item Decoupling 
-\end{itemize}
+Main sequence stars owe their name to the fact that their luminosity vs color relation follows a distinct curve. This group of stars incorporates the majority of stars in the universe, including our sun. 
 
-If we consider a time-period where the universe has cooled sufficiently rapidly so that protons and neutrons are non-relativistic, but before nuclei have formed. Assuming protons and neutrons are non-relativistic and in thermal equilibrium it is safe to assume that they follow the Maxwell-Boltzmann distribution. In that case, the number density is given by
-\begin{equation}
-N \propto m^{3/2} \exp \left( \frac{-mc^2}{k_\mrm{B} T} \right).
-\end{equation}
-The particles are in thermal equilibrium (at the same temperature) and we can therefore write
-\begin{equation}
-\frac{N_n}{N_p} = \left( \frac{m_n}{m_p} \right) ^{3//2} \exp \left[ -\frac{(m_n - m_p)c^2}{k_\mrm{B} T} \right].
-\end{equation}
-Since the mass of protons and neutrons are very similar we note that the number of neutrons and protons will be quite similar in the primordial plasma as long as $k_\mrm{B} T \gg (m_n - m_p)c^2$.
+White dwarfs and neutron stars represent two end-stages for main sequence stars. White dwarfs are held together by \textbf{electron degeneracy pressure} whereas neutron stars are supported by \textbf{neutron degeneracy pressure}. Neutron stars are the most dense known stellar objects, with the exception of black holes. Their formation is accompanied with a supernova explosion event which includes a process whereby electrons and protons are squashed together to form neutrons. The Pauli exclusion principle forces these neutrons to occupy different quantum states and therefore acts like a pressure term that resists further contraction.
 
-Neutrons and protons are coupled through the following conversion process
-\begin{align}
-n + \nu _e &\longleftrightarrow  p + e^-, \\
-n + e^+ &\longleftrightarrow p + \bar{\nu}_e.
-\end{align}
-As long as these processes continue at a sufficient rate, the two particles remain in thermal equilibrium. We find that the reaction rate is high as long as $k_\mrm{B}T \simeq 0.8 \:\mrm{MeV}$ ($T\simeq10^{10}\:\mrm{K}$), but eventually this process dies down and the relative number density of neutrons versus protons is
-\begin{equation}
-\frac{N_n}{N_p} \simeq \exp \left( - \frac{1.3 \:\mrm{MeV}}{0.8 \:\mrm{MeV}} \right) \simeq \frac{1}{5}. 
-\end{equation}
-
-\section{Supernovas, neutron stars, and neutrinos [M.\ 9.1.4]}
-\textit{This section is based on discussion found in Section 9.1.4 in Martin's textbook}
-
-White dwarfs and neutron stars represent two end-stages for massive stars. White dwarfs are held together by \textbf{electron degeneracy pressure} whereas neutron stars are supported by \textbf{neutron degeneracy pressure}. Neutron stars are the most dense known stellar objects, with the exception of black holes. Their formation is accompanied with a supernova explosion event which includes a process whereby electrons and protons are squashed together to form neutrons. The Pauli exclusion principle forces these neutrons to occupy different quantum states and therefore acts like a pressure term that resists further contraction.
+White dwarfs are thought to represent the final evolutionary state of the majority of main sequence stars, including that of our sun. 
 
 % This part taken from Ryden's astrophysics textbook
+\subsection{White dwarfs and Pauli's exclusion principle (optional)}
 It is interesting to look at the approximate equations governing the radius of white dwarfs. The Heisenberg uncertainty principle states that 
 \begin{equation}
 \Delta x \Delta p \geq \hbar.
@@ -400,11 +372,14 @@ which gives
 R \sim \frac{\hbar ^2}{G m_e m_p^2} \left( \frac{M}{m_p} \right)^{-1/3}.
 \end{equation}
 Somewhat surprisingly, the size of a white dwarf goes down as you increase its mass. Obviously, the above derivation made many simplifying assumptions, but the rough result is still valid. The more accurate derivation was Chandrasekhar and others. Stars at the end of their life whose mass exceeds the Chandrasekhar limit evolve to become neutron stars.
+
 %\begin{note}
 %This estimate
 %\end{note}
 
-Roughly, the order of events goes as follows:
+\subsection{Neutron stars}
+\label{seq:neutron_star}
+If the mass of a star exceeds the Chandrasekhar limit, \mbox{$M > 1.4 M_\odot$}, it will evolve to become a neutron star. In the case of very massive stars, the run of events can look something like the following:
 \begin{enumerate}
 \item Stars with mass greater than about 11 solar masses ($M_\odot$) can evolve through all stages of fusion ending in a core of iron surrounded by shells of lighter elements
 \item Thermonuclear fusion of iron is not possible and therefore the core will contract under gravity
@@ -426,32 +401,42 @@ The photodisintegration of iron can be described by,
 \begin{equation}
 \gamma + {}^{56}\mrm{Fe} \rightarrow 13({}^4\mrm{He}) + 4n,
 \end{equation}
-which causes further heating of the core. This drives a second process 
+followed by further splitting of the helium nuclei into protons and neutrons. 
 \begin{equation}
 \gamma + {}^4 \mrm{He} \rightarrow 2p + 2n.
 \end{equation}
-As this process continues, eventually the electrons have enough energy to faciliate a weak interaction whereby electrons and protons combine to form neutrons
+As this process continues, eventually the electrons have enough energy to faciliate a weak interaction whereby electrons and protons fuse to form neutrons
 \begin{equation}
 e^{-} + p \rightarrow n + \nu _e.
 \end{equation} 
-The gravitational collapse stops abruptly when the neutron degeneracy pressure counters the gravitational pressure. This generates a core-collapse shock wave that expels matter, radiation, and neutrinos. It turns out, that the majority (99\%) of energy radiated away from a core-collapse supernova is in the form of neutrinos. When all of this is done, most of the mass of the star is in the form of neutrons.
+The gravitational collapse stops abruptly when the neutron degeneracy pressure counters the gravitational pressure. This generates a core-collapse shock wave that expels matter, radiation, and neutrinos. 
 
-Some neutron star properties include:
+It turns out, that the majority (99\%) of energy radiated away from a core-collapse supernova is in the form of neutrinos because of their low scattering cross section. When all of this is done, most of the mass of the star is in the form of neutrons.
+
+A typical neutron star could have the following properties:
 \vspace{-7mm}
 \begin{itemize}
-\item Mass:  $M \approx 1.2 \mhyphen 2.2 \: M_\odot$
-\item Radius: $R = 8 \mhyphen 13$~km
+\item Mass:  $M \approx 1.5 \: M_\odot$
+\item Radius: $R \approx 10$~km
 \item Density: $\rho \approx 10^{14}$ g/cm$^{3}$
 \end{itemize}
 
 \begin{note}
-A lot is still unknown about the physics that are in play during the formation of a neutron stars. 
+A lot is still unknown about the physics that are in play during the formation of a neutron stars and there are lot of active research groups working on generating more accurate numerical simulations of events leading up to the formation of a neutron star. One group is lead by Stephan Rosswog here at Stockholm University.
 \end{note}
+
+\subsection{Supernovae}
+
+A sufficiently massive star will end its life cycle in an explosion referred to as a supernova event. There are different types of supernovae and these are characterized by the time evolution of their spectrum and the events leading up to the explosion. Some supernovae happen when white dwarfs are reignited by the accumulation of matter, for example from a binary companion. Others simply happen when a very massive star ends it life (see description in \ref{seq:neutron_star}). 
+
+It is estimated that roughly 1-3 stars in our own Galaxy end with supernovae explosions per century. We only see a fraction of those because occlusion from other stellar objects in our Galaxy. 
+
+A particularly useful group of supernovae are known as type Ia supernovae. These types of supernovae are generated when a white dwarf is reignited by the accumulation of matter, typically from a companion star. Because of the mass limit for electron degeneracy pressure to be able to prevent further gravitational collapse is fixed, roughly $M = 1.4 M_\odot$, the critical mass is fixed and therefore the peak luminosity of the explosion is quite consistent between events. This suggests that the type Ia supernovae can serve as standard candles throughout the universe. We will discuss that further in subsequent lectures.
 
 \section{Kamiokande, Amanda, and IceCube (Optional)}
 Famously, the Kamiokande and IMB experiments measured a stream of neutrinos in their water Cherenkov detectors in 1987.\footnote{These neutrinos are thought to have come from SN1987A} This signal was then used to constrain the mass of the neutrinos (see discussion in Liddle 9.1.4). The 2002 Nobel prize in physics was in part awarded for the work leading to the detection of cosmic neutrinos.
 
-We estimate roughly 2-3 supernova events per century in our galaxy. We expect that such a supernova event will register in experiments like Super-Kamiokande (see Figure \ref{fig:skamiokande}). Within seconds of this happening, the collaboration hopes to be able to send alarms to other astrophysical observatories. The data from modern-day observations of a nearby supernova would likely revolutionize our understanding of various phenomena. The 2015 Nobel prize in physics was awarded in recognition of Super-Kamiokande measurements of neutrino oscillations. 
+We estimate roughly 1-3 supernova events per century in our galaxy. We expect that such a supernova event will register in experiments like Super-Kamiokande (see Figure \ref{fig:skamiokande}). Within seconds of this happening, such experimental collaborations hope to be able to send alarms to other astrophysical observatories. The data from modern-day observations of a nearby supernova would likely revolutionize our understanding of various physical processes. The 2015 Nobel prize in physics was awarded in recognition of Super-Kamiokande measurements of neutrino oscillations. 
 
 \begin{figure}[t]
 \begin{center}
@@ -467,6 +452,41 @@ The IceCube Neutrino Observatory is a large scientific experiment placed at the 
 The IceCube experiment has significant contributions from Stockholm University. If you are interested in the science that they do, you should reach out to people like Chad Finley and Klas Hultqvist.\footnote{See \href{https://www.su.se/profiles/klas-1.186617}{\linkc{https://www.su.se/profiles/klas-1.186617}} and \href{https://www.su.se/profiles/cfinl-1.187008}{\linkc{https://www.su.se/profiles/cfinl-1.187008}}}
 \end{note}
 
+\section{Black holes}
+If the mass of a stellar object becomes sufficiently large, even the neutron degeneracy pressure will not be able to resist gravitational collapse. The star becomes a black hole. 
+
+\section{Big bang nucleosynthesis}
+Big bang nucleosynthesis (BBN) is a concept that is commonly brought up in both astrophysical and cosmological context. It describes the physics of element production during the early stages in the history of our universe. For those who are interested, Steven Weinberg wrote a famous book called \textit{The First Three Minutes}~\cite{Weinberg1993}.
+
+Chapter 12 in Liddle discusses light element production, in particular hydrogen and helium, during the first few minutes in the history of our big bang cosmological model. Some concepts to take away from this chapter include:
+\begin{itemize}
+\item BBN is responsible for the production of hydrogen, helium, deuterium, and even lithium; there is a primordial abundance that we can measure today
+\item Nucleosynthesis is happening at temperatures corresponding to $1 \:\mrm{MeV}$
+\item Nucleosynthesis happens during the first few minutes in the history of our universe
+\item At the end of this process, we are left with approximately 75\% hydrogen, and 25\% helium
+\item A tiny mass fraction in the form of deuterium, helium-3, and lithium (lithium-6 and lithium-7 are both stable)
+%\item Decoupling 
+\end{itemize}
+
+If we consider a time-period where the universe has cooled sufficiently rapidly so that protons and neutrons are non-relativistic, but before nuclei have formed. Assuming protons and neutrons are non-relativistic and in thermal equilibrium it is safe to assume that they follow the Maxwell-Boltzmann distribution. In that case, the number density is given by
+\begin{equation}
+N \propto m^{3/2} \exp \left( \frac{-mc^2}{k_\mrm{B} T} \right).
+\end{equation}
+The particles are in thermal equilibrium (at the same temperature) and we can therefore write
+\begin{equation}
+\frac{N_n}{N_p} = \left( \frac{m_n}{m_p} \right) ^{3//2} \exp \left[ -\frac{(m_n - m_p)c^2}{k_\mrm{B} T} \right].
+\end{equation}
+Since the mass of protons and neutrons are very similar we note that the number of neutrons and protons will be quite similar in the primordial plasma as long as $k_\mrm{B} T \gg (m_n - m_p)c^2$.
+
+Neutrons and protons are coupled through the following conversion process
+\begin{align}
+n + \nu _e &\longleftrightarrow  p + e^-, \\
+n + e^+ &\longleftrightarrow p + \bar{\nu}_e.
+\end{align}
+As long as these processes continue at a sufficient rate, the two particles remain in thermal equilibrium. We find that the reaction rate is high as long as $k_\mrm{B}T \simeq 0.8 \:\mrm{MeV}$ ($T\simeq10^{10}\:\mrm{K}$), but eventually this process dies down and the relative number density of neutrons versus protons is
+\begin{equation}
+\frac{N_n}{N_p} \simeq \exp \left( - \frac{1.3 \:\mrm{MeV}}{0.8 \:\mrm{MeV}} \right) \simeq \frac{1}{5}. 
+\end{equation}
 
 %\section{List of important concepts [non-exhaustive]}
 %Here are some important concepts and questions to take away from the material covered in this lecture (and in the corresponding chapters in the textbooks):
