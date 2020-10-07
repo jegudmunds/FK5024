@@ -1,0 +1,1 @@
+"/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" -o combined.pdf lecture11/lecture11.pdf lecture12/lecture12.pdf lecture13/lecture13.pdf lecture14/lecture14.pdf lecture15/lecture15.pdf lecture16/lecture16.pdf
